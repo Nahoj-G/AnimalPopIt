@@ -10,13 +10,15 @@ public class Window {
 
     public static final int WIDTH = 1280,  HEIGHT = 720;
     private JFrame frame;
-    private ImageIcon animalIcon;
+    private ImageIcon animalIcon, startIcon, exitlIcon;
     private JLabel labelBackground;
     private JButton startButton, exitButton;
 
 
     public Window() {
         animalIcon = new ImageIcon(this.getClass().getResource("./images/index.png"));
+        startIcon = new ImageIcon(this.getClass().getResource("./images/start.png"));
+        exitlIcon = new ImageIcon(this.getClass().getResource("./images/exit.png"));
 
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
@@ -30,6 +32,7 @@ public class Window {
         frame.setVisible(true);
 
         startButton = new JButton("Iniciar");
+        startButton.setIcon(startIcon);
         startButton.setBounds(514,418,252,100);
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -40,6 +43,7 @@ public class Window {
         labelBackground.add(startButton);
 
         exitButton = new JButton("Cerrar");
+        exitButton.setIcon(exitlIcon);
         exitButton.setBounds(514,536,252,100);
         exitButton.addActionListener(new ActionListener() {
             @Override
