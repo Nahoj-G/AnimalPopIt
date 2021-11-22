@@ -39,7 +39,7 @@ public class Window {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new Level();
             }
         });
         labelBackground.add(startButton);
