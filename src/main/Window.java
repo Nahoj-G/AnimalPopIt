@@ -33,7 +33,9 @@ public class Window {
 
         startButton = new JButton("Iniciar");
         startButton.setIcon(startIcon);
-        startButton.setBounds(514,418,252,100);
+        startButton.setBounds(514,418,294,120);
+        startButton.setMargin(new Insets(0, 0, 0, 0));
+        startButton.setBorder(null);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +46,9 @@ public class Window {
 
         exitButton = new JButton("Cerrar");
         exitButton.setIcon(exitlIcon);
-        exitButton.setBounds(514,536,252,100);
+        exitButton.setBounds(514,536,294,120);
+        exitButton.setMargin(new Insets(0, 0, 0, 0));
+        exitButton.setBorder(null);
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
