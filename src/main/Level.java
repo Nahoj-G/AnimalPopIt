@@ -84,10 +84,6 @@ public class Level {
 		labelBackground.add(donkeyButton);
 		labelBackground.add(numberLevel);
 
-
-		//PlaySound(3);
-		//final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-		//executorService.scheduleAtFixedRate(Level::PlaySound, 0, 1, TimeUnit.SECONDS);
 		System.out.println(Arrays.toString(PlaySound(3)));
 
 	}
@@ -104,7 +100,7 @@ public class Level {
 				try {
 
 					for (int i=0;i< correctAnimals.length ; i++){
-						sleep(1000);
+						sleep(1200);
 						System.out.println(correctAnimals[i]);
 						click.setLocationSong("/sounds/"+ correctAnimals[i] +".wav");
 						click.play();
