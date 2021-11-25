@@ -15,6 +15,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import static java.lang.Thread.sleep;
+
 
 public class Sound extends JButton {
    
@@ -46,6 +48,7 @@ public class Sound extends JButton {
            clip = AudioSystem.getClip();
            clip.open(audioInputStream);            
            clip.start();
+
        } catch (LineUnavailableException | IOException| UnsupportedAudioFileException e) {
            System.err.println(e.getMessage());
        }
