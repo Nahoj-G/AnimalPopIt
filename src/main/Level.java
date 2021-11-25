@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,17 +9,21 @@ public class Level {
 	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
-	private JLabel labelBackground;
+	private JLabel labelBackground, numberLevel;
     private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon;
-	private String numberLevel;
+
 
     public Level() {
 
 		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
+		numberLevel = new JLabel("1");
+		Font font = new Font("Jokerman", Font.PLAIN, 40);
+		numberLevel.setBounds(180,1008,40,40);
+		numberLevel.setFont(font);
 
         frame = new JFrame("Animal Pop It");
         frame.add(labelBackground);
@@ -60,6 +65,7 @@ public class Level {
 		labelBackground.add(sheepButton);
 		labelBackground.add(wolfButton);
 		labelBackground.add(donkeyButton);
+		labelBackground.add(numberLevel);
     }
 
     public static void main (String[] args){
