@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +20,7 @@ public class Level {
 	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon;
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
-	private String correctAnimals;
+	private String correctAnimals [];
 	private String answerAnimals;
 	static Sound click = new Sound();
 
@@ -83,31 +84,38 @@ public class Level {
 		labelBackground.add(donkeyButton);
 		labelBackground.add(numberLevel);
 
-		correctAnimals = "";
-		PlaySound(3);
+
+		//PlaySound(3);
 		//final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 		//executorService.scheduleAtFixedRate(Level::PlaySound, 0, 1, TimeUnit.SECONDS);
+		System.out.println(Arrays.toString(PlaySound(3)));
 
 	}
 
-	private String PlaySound(int count) {
-		String animal = listAnimals[(int)(Math.random()*10)];
-		if (count>0){
-			Thread t1 = new Thread(new Runnable() {
-				public void run()
-				{
-					try {
-						sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					correctAnimals = PlaySound(count - 1) + animal;
-					click.setLocationSong("/sounds/" + animal + ".wav");
-					click.play();
-				}});
-			t1.start();
+	private String[] PlaySound(int count) {
+		correctAnimals = new String[count];
+		for (int i = 0 ; i <count; i++){
+			correctAnimals[i] = listAnimals[(int)(Math.random()*10)];
 		}
-		return animal;
+
+		Thread t1 = new Thread(new Runnable() {
+			public void run()
+			{
+				try {
+
+					for (int i=0;i< correctAnimals.length ; i++){
+						sleep(1000);
+						System.out.println(correctAnimals[i]);
+						click.setLocationSong("/sounds/"+ correctAnimals[i] +".wav");
+						click.play();
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				}});
+		t1.start();
+
+		return correctAnimals;
 	}
 
 }
