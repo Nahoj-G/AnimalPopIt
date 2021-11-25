@@ -5,36 +5,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Objects;
 
 public class Animals extends JButton {
 		Sound click = new Sound();
 		
 		private ImageIcon icon, iconShade;
-		private JButton animalButton; 
-		private String sound;
-		private String name;
-		
-		public Animals(String name, String iconLocation, String iconShadeLocation) {
-			
-			icon = new ImageIcon(this.getClass().getResource(iconLocation));			
-			iconShade = new ImageIcon(this.getClass().getResource(iconShadeLocation));
-			this.name= name;
+		private JButton animalButton;
 
-			animalButton = new JButton(name);
-			animalButton.setIcon(iconShade);
-			animalButton.setBounds(750,450,200,200);
-			//animalButton.setContentAreaFilled(false);
-			animalButton.setBorder(null);
+		public Animals(String name,int x, int y){
 			
-			animalButton.addActionListener(new ActionListener() {
+			icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
+			iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
+
+			setIcon(iconShade);
+			setBounds(x,y,192,289);
+			setContentAreaFilled(false);
+			setBorder(null);
+			addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	            	 
 	            }
 	        });
-			animalButton.addMouseListener (new MouseListener () {
+			addMouseListener (new MouseListener () {
 	    		@Override
-	    		public void mouseClicked(MouseEvent e) {    			
+	    		public void mouseClicked(MouseEvent e) {
+					click.setLocationSong("/sounds/" + name + ".wav");
+					click.play();
 	    		}
 	    		@Override
 	    		public void mousePressed(MouseEvent e) {    			
@@ -44,17 +42,12 @@ public class Animals extends JButton {
 	    		}
 	    		@Override
 	    		public void mouseEntered(MouseEvent e) {    			
-	    			animalButton.setRolloverIcon(icon);
-	    			click.setLocationSong(sound);
-	              	click.play();
+	    			setRolloverIcon(icon);
+
 	    		}
 	    		@Override
 	    		public void mouseExited(MouseEvent e) {    			
 	    		}
 	         });
-		}
-		
-		public void sound(String text) {
-			sound=text;
 		}
 }

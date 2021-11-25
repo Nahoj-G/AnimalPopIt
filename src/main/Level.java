@@ -38,7 +38,7 @@ public class Level {
 		catShadeIcon = new ImageIcon(this.getClass().getResource("/images/catShade.png"));
 		chickenShadeIcon = new ImageIcon(this.getClass().getResource("/images/chickenShade.png"));
 		dogShadeIcon = new ImageIcon(this.getClass().getResource("/images/dogShade.png"));
-		lyonShadeIcon = new ImageIcon(this.getClass().getResource("/images/lyon.png"));
+		lyonShadeIcon = new ImageIcon(this.getClass().getResource("/images/lyonShade.png"));
 		monkeyShadeIcon = new ImageIcon(this.getClass().getResource("/images/monkeyShade.png"));
 		pigShadeIcon = new ImageIcon(this.getClass().getResource("/images/pigShade.png"));
 		sheepShadeIcon = new ImageIcon(this.getClass().getResource("/images/sheepShade.png"));
@@ -89,116 +89,28 @@ public class Level {
     		}
          });
 
-        dogButton = new JButton("");
-        dogButton.setIcon(dogShadeIcon);
-        dogButton.setBounds(185,285,200,245);
-        dogButton.setBorder(null);
-        dogButton.setContentAreaFilled(false);
-        dogButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-        dogButton.addMouseListener (new MouseListener () {
-    		@Override
-    		public void mouseClicked(MouseEvent e) {
-    		}
-    		@Override
-    		public void mousePressed(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseReleased(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseEntered(MouseEvent e) {
-    			dogButton.setRolloverIcon(dogIcon);
-    			click.setLocationSong("/src/sounds/dog.wav");
-            	click.play();
-    		}
-    		@Override
-    		public void mouseExited(MouseEvent e) {
-    		}
-
-         });
-
-        catButton = new JButton("");
-        catButton.setIcon(catShadeIcon);
-        catButton.setBounds(435,695,178,288);
-
-        catButton.setBorder(null);
-        catButton.setContentAreaFilled(false);
-        catButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	// click.setfile("/src/sounds/close.wav");
-              	 //click.play();
-
-            }
-        });
-        catButton.addMouseListener (new MouseListener () {
-    		@Override
-    		public void mouseClicked(MouseEvent e) {
-    		}
-    		@Override
-    		public void mousePressed(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseReleased(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseEntered(MouseEvent e) {
-    			catButton.setRolloverIcon(catIcon);
-    			click.setLocationSong("/src/sounds/cat.wav");
-            	click.play();
-    		}
-    		@Override
-    		public void mouseExited(MouseEvent e) {
-    		}
-
-         });
-
-        cowButton = new JButton("");
-        cowButton.setIcon( cowShadeIcon);
-        cowButton.setBounds(910,235,192,289);
-
-        cowButton.setBorder(null);
-        cowButton.setContentAreaFilled(false);
-        cowButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	 //click.setfile("/src/sounds/close.wav");
-              	 //click.play();
-
-            }
-        });
-        cowButton.addMouseListener (new MouseListener () {
-    		@Override
-    		public void mouseClicked(MouseEvent e) {
-    		}
-    		@Override
-    		public void mousePressed(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseReleased(MouseEvent e) {
-    		}
-    		@Override
-    		public void mouseEntered(MouseEvent e) {
-    			 cowButton.setRolloverIcon(cowIcon);
-    			 click.setLocationSong("/src/sounds/cow.wav");
-             	click.play();
-    		}
-    		@Override
-    		public void mouseExited(MouseEvent e) {    			
-    		}
-
-         });
+		dogButton = new Animals("dog",185,285);
+		catButton = new Animals("cat",435,700);
+        cowButton = new Animals("cow",910,235);
+		chickenButton = new Animals("chicken",660,215);
+		pigButton = new Animals("pig",420,215);
+		donkeyButton = new Animals("donkey",1180,215);
+		lyonButton = new Animals("lyon",680,730);
+		monkeyButton = new Animals("monkey",930,700);
+		sheepButton = new Animals("sheep",1200,720);
+		wolfButton = new Animals("wolf",180,600);
 
         labelBackground.add(cowButton);
         labelBackground.add(dogButton);
         labelBackground.add(backToMenuBotton);
         labelBackground.add(catButton);
+		labelBackground.add(chickenButton);
+		labelBackground.add(lyonButton);
+		labelBackground.add(monkeyButton);
+		labelBackground.add(pigButton);
+		labelBackground.add(sheepButton);
+		labelBackground.add(wolfButton);
+		labelBackground.add(donkeyButton);
     }
 
     public static void main (String[] args){
