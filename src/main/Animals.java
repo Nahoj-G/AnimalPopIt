@@ -9,9 +9,8 @@ import java.util.Objects;
 
 public class Animals extends JButton {
 		Sound click = new Sound();
-		
-		private ImageIcon icon, iconShade;
-		private JButton animalButton;
+		private final ImageIcon icon;
+		private final ImageIcon iconShade;
 
 		public Animals(String name,int x, int y){
 			
