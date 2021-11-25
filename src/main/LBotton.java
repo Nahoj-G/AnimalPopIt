@@ -21,7 +21,6 @@ public class LBotton extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Window();
                 click.setLocationSong("/src/sounds/close.wav");
                 click.play();
             }
