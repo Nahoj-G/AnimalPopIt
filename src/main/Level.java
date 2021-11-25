@@ -5,20 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Level {
-	Sound click = new Sound();
+	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
 	private JLabel labelBackground;
-    private JButton backToMenuBotton, catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
+    private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
+	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon;
+	private String numberLevel;
 
     public Level() {
-		//iconos con color
+
 		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
-
-
-   		//iconos sombreados
-
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
 
@@ -29,6 +27,7 @@ public class Level {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
 
         backToMenuBotton = new LBotton("backToMenu",1380,20,93,93);
 		backToMenuBotton.addActionListener(new ActionListener() {

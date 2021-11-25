@@ -54,9 +54,4 @@ public class Sound extends JButton {
    public void setLocationSong(String a) {
 	  archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + a);
    }
-
-   
-   
-
-	
 }
