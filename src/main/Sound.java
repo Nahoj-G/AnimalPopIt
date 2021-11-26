@@ -60,6 +60,6 @@ public class Sound extends JButton {
 	   clip.stop();
    }
    public void loop() {
-	   clip.loop(1);
+	   clip.loop(4);
    }
 }

@@ -8,53 +8,73 @@ import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
-public class CountForm {
+public class CountForm extends JFrame{
 
     public static final int WIDTH = 1514,  HEIGHT = 1080;
-    private JFrame frame;
-    private JLabel labelBackground, numberLevel, countDown;
-    private ImageIcon animalIcon;
-
-    public CountForm(){
-
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
+    private JLabel labelBackground, countDown;
+    private ImageIcon animalIcon,windowIcon;
+    private Boolean makeLevel;
+    Sound conteo = new Sound();    
+    
+    public CountForm(Boolean makeLevel){    	
+    	
+    	if(makeLevel) {
+    		animalIcon = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    	}else {
+    		animalIcon = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
+    	}        
+        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
-        numberLevel = new JLabel("1");
-        Font font = new Font("Jokerman", Font.PLAIN, 40);
-        numberLevel.setBounds(180,1008,40,40);
-        numberLevel.setFont(font);
-
-        frame = new JFrame("Animal Pop It");
-        frame.add(labelBackground);
-        frame.setSize(WIDTH,HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
-        labelBackground.add(numberLevel);
+        
+        add(labelBackground);
+        setSize(WIDTH,HEIGHT);
+        setTitle("Animal Pop It");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setIconImage(windowIcon.getImage());
         countDown = new JLabel(String.valueOf(3));
-        Font font2 = new Font("Jokerman", Font.PLAIN, 300);
-        countDown.setBounds(630, 390, 300, 300);
-        countDown.setFont(font2);
-        labelBackground.add(countDown);
-
-        Thread t1 = new Thread(new Runnable() {
-            public void run(){
+        countDown.setBounds(1090, 330, 300, 300);
+        countDown.setFont(new Font("Jokerman", Font.PLAIN, 260));
+        countDown.setHorizontalAlignment(JLabel.CENTER);
+        labelBackground.add(countDown);          
+                    
+        Thread t1 = new Thread(new Runnable() {        	
+           public void run(){
+            	 try {
+                     sleep(300);
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
                 for (int i = 3 ; i >= 0; i--) {
-                    countDown.setText(String.valueOf(i));
-                    try {
+                	
+                	if(i==0) {
+                		countDown.setText("Go");
+                		conteo.setLocationSong("/src/sounds/start.wav");
+                    	conteo.play();
+                	}else {
+                		countDown.setText(String.valueOf(i));
+                		conteo.setLocationSong("/src/sounds/conter.wav");
+                		conteo.play();
+                		try {
                         sleep(1000);
-                    } catch (InterruptedException e) {
+                		} catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
+                		}
+                   }
+                }   
+                
+                if(makeLevel){
+                	   new Level();
+                	   dispose();
+                }else {
+                	 dispose();
                 }
-                frame.dispose();
-                new Level();
-            }});
-        t1.start();
-
-
+            }
+         });
+        t1.start();    
+        
     }
 }

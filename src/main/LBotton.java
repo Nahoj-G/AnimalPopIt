@@ -18,11 +18,10 @@ public class LBotton extends JButton {
         setBounds(x,y,w,h);
         setContentAreaFilled(false);
         setBorder(null);
+        setFocusPainted(false);
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               /* click.setLocationSong("/src/sounds/exit.wav");
-                click.play();*/
             }
         });
         addMouseListener (new MouseListener() {

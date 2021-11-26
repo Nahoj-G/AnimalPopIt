@@ -1,150 +1,200 @@
 package main;
 
-import javax.management.StringValueExp;
+
 import javax.swing.*;
+
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class Level  {
+import static java.lang.Thread.sleep;
+
+public class Level extends JFrame {
 	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
-    private JFrame frame;
-	private JLabel labelBackground, numberLevel, countDown;
+   	private JLabel labelBackground, numberLevel;
     private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
-	private ImageIcon animalIcon;
+	private ImageIcon animalIcon,windowIcon;
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [],answerAnimals[];
-	private int position;
+	private int position, inicio,level;
+	static int outLevel; 
 	static Sound music = new Sound();
-
-
-
+	
     public Level() {
-		position = 0;
-		answerAnimals = new String[9];
+    	
+    	position = 0;
+		inicio=3;
+		level=1;
+		outLevel=level;
+		answerAnimals = new String[inicio];
 		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
+		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
-		numberLevel = new JLabel("1");
-		Font font = new Font("Jokerman", Font.PLAIN, 40);
-		numberLevel.setBounds(180,1008,40,40);
-		numberLevel.setFont(font);
+		numberLevel = new JLabel();
+		//toco asi, porque del 2 en adelante no los mostraba
+		numberLevel.setText("1");
+		//aqui podemos ahorrar codigo creando el objecto y dandolo como parametro
+		numberLevel.setFont(new Font("Jokerman", Font.PLAIN, 95));
+		numberLevel.setBounds(60,900,95,95);
 		labelBackground.add(numberLevel);
-
-        frame = new JFrame("Animal Pop It");
-        frame.add(labelBackground);
-        frame.setSize(WIDTH,HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        
+		
+		System.out.println("animales en juego: "+inicio);
+		System.out.println("Nivel de juego actual ---> "+(String.valueOf(numberLevel.getText())));
+     
+        add(labelBackground);
+        setSize(WIDTH,HEIGHT);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setIconImage(windowIcon.getImage());
+        setTitle("Animal Pop It");
         music.setLocationSong("/src/sounds/song.wav");
-        music.play();
-
+        music.play();        
         
         backToMenuBotton = new LBotton("backToMenu",1380,20,93,93);
-        
-		backToMenuBotton.addActionListener(new ActionListener() {
+        		backToMenuBotton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Window();
+				new mainMenu();
 				music.stop();
-				frame.dispose();
-				
+				dispose();						
 			}
 		});
 
 		dogButton = new Animals("dog",185,285);
 		dogButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {					
 				answerAnimals [position] =  "dog"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(dogButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}						
 			}
 		});
 
 		catButton = new Animals("cat",435,700);
 		catButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "cat"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(catButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
         cowButton = new Animals("cow",910,235);
 		cowButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "cow"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(cowButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		chickenButton = new Animals("chicken",660,215);
-		chickenButton.addActionListener(new ActionListener() {
+		chickenButton.addActionListener(new ActionListener() {			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "chicken"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(chickenButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		pigButton = new Animals("pig",420,215);
 		pigButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "pig"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(pigButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		donkeyButton = new Animals("donkey",1180,215);
-		donkeyButton.addActionListener(new ActionListener() {
+		donkeyButton.addActionListener(new ActionListener() {			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "donkey"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(donkeyButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		lyonButton = new Animals("lyon",680,730);
 		lyonButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "lyon"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(lyonButton.getName());				
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		monkeyButton = new Animals("monkey",930,700);
 		monkeyButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				answerAnimals [position] =  "monkey"; position++;
-				checkWin(correctAnimals,answerAnimals);
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(monkeyButton.getName());
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		sheepButton = new Animals("sheep",1200,720);
 		sheepButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				answerAnimals [position] =  "sheep"; position++;
-				checkWin(correctAnimals,answerAnimals);
+			public void actionPerformed(ActionEvent e) {			
+				answerAnimals [position] =  "sheep"; position++;				
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(sheepButton.getName());				
+				if(position==inicio) {
+					checkWin(correctAnimals,answerAnimals);
+					}
 			}
 		});
 
 		wolfButton = new Animals("wolf",180,600);
 		wolfButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {	
 				answerAnimals [position] =  "wolf"; position++;
+				System.out.println("vamos en la posicion :  "+position);
+				System.out.println(wolfButton.getName());
+				if(position==inicio) {
 				checkWin(correctAnimals,answerAnimals);
+				}
 			}
 		});
 
@@ -159,19 +209,33 @@ public class Level  {
 		labelBackground.add(sheepButton);
 		labelBackground.add(wolfButton);
 		labelBackground.add(donkeyButton);
-
-		correctAnimals = new String[9];
-		correctAnimals = PlaySound(3);
+		labelBackground.add(numberLevel);
+		 
+		repaint();
+		
+		correctAnimals = new String[inicio];
+		correctAnimals = PlaySound(inicio);
 	}
-
+    
+    //metodo para obtener el nivel actual, y mandarlo  a la clase player(), pero no la he linkeado
+    public int getLevel() {
+    	return outLevel;
+    }   
+    
+//metodo del juego    										
 	private String[] PlaySound(int count) {
-		correctAnimals = new String[9];
+		correctAnimals = new String[count];
 		for (int i = 0 ; i <count; i++){
 			correctAnimals[i] = listAnimals[(int)(Math.random()*10)];
 		}
 
 		Thread t1 = new Thread(new Runnable() {
 			public void run(){
+				try {
+					sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				for (int i = 0 ; i< count ; i++) {
 					switch (correctAnimals[i]) {
 						case "dog":
@@ -205,27 +269,44 @@ public class Level  {
 							wolfButton.changeIcon();
 							break;
 					}
-					System.out.println(correctAnimals[i]);
+					System.out.println((i+1)+"-"+correctAnimals[i]);
 				}
+				System.out.println("--------"+inicio);
 			}});
 		t1.start();
 		return correctAnimals;
 	}
 
-	public void checkWin(String [] correct, String [] answer){
-		if (position == Integer.parseInt(numberLevel.getText())+2){
-			if (Arrays.equals(correct,answer)){
-				if (position == 9){
+	public void checkWin(String [] correct, String [] answer){		
+			if (Arrays.equals(correct,answer)){			
+				if (position ==10){
 					// form ganaste
+					System.out.println();
+					System.out.println("GANASTE");
+					System.exit(0);					
 				}else {
+					System.out.println();
+					System.out.println("Avanzaste de nivel");
+					new CountForm(false);					
 					position = 0;
-					int newLevel = Integer.parseInt(numberLevel.getText())+3;
-					correctAnimals = PlaySound(newLevel);
-					numberLevel.setText(String.valueOf(newLevel - 2));
+					increaseInicio();					
+					System.out.println("animales en juego: "+inicio);					
+					correctAnimals = PlaySound(inicio);
+					numberLevel.setText(String.valueOf(level));
+					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 				}
 			}else{
 				//form perdiste
-			}
-		}
+				System.out.println();
+				System.out.println();
+				System.out.println("YA VALISTE MADRE");
+				new Lose();
+				music.stop();			
+			}		
 	}
+	private void increaseInicio() {
+		inicio++;
+		level++;
+		answerAnimals = new String[inicio];		
+	}	
 }
