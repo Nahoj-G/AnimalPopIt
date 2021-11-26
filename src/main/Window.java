@@ -3,9 +3,13 @@ package main;
 
 import javax.swing.*;
 import javax.swing.JButton;
+
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,18 +17,15 @@ public class Window {
 
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
-    private ImageIcon animalIcon, startIcon, exitlIcon, startoIcon, exitolIcon,windowIcon;
-    private JLabel labelBackground;
-    private JButton startButton, exitButton;
-    Sound click = new Sound();
+    private ImageIcon animalIcon,windowIcon;
+    private JLabel labelBackground;  
+    private LBotton startButton,exitButton;
+    Sound music = new Sound();
+   
+    
     public Window() {
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/index.png"));
-        startIcon = new ImageIcon(this.getClass().getResource("/images/start.png"));
-        startoIcon = new ImageIcon(this.getClass().getResource("/images/starto.png"));
-        exitlIcon = new ImageIcon(this.getClass().getResource("/images/exit.png"));
-        exitolIcon = new ImageIcon(this.getClass().getResource("/images/exito.png"));
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); //create an ImageIcon
-
+        animalIcon = new ImageIcon(this.getClass().getResource("/images/index.png"));     
+        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
 
@@ -36,137 +37,41 @@ public class Window {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setIconImage(windowIcon.getImage());
-
-        startButton = new JButton("   Iniciar");
-        startButton.setIcon(startIcon);
-        startButton.setBounds(622,618,270,100);
-        startButton.setBorder(null);
-        startButton.setContentAreaFilled(false);
+           
+        music.setLocationSong("/src/sounds/back.wav");
+        music.play();
+        music.loop();
+        
+        startButton = new LBotton("start",622,618,270,100);        
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                click.setLocationSong("/src/sounds/button_sound.wav");
-                click.play();
                 new Level();
-                frame.setVisible(false);
+               // frame.setVisible(false);
+                music.stop();
+                frame.dispose();
             }
         });
-        startButton.addMouseListener (new MouseListener () {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-                startButton.setRolloverIcon(startoIcon);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-
-
-
-
-        exitButton = new JButton("Cerrar");
-        exitButton.setIcon(exitlIcon);
-        exitButton.setBounds(622,736,270,100);
-        exitButton.setBorder(null);
-        exitButton.setContentAreaFilled(false);
+        
+        exitButton = new LBotton("exit",622,736,270,100);   
         exitButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                click.setLocationSong("/sounds/close.wav");
-                click.play();
-                frame.dispose();
-
-
+            public void actionPerformed(ActionEvent e) {             
+               frame.dispose();
+               music.stop();
             }
         });
-        exitButton.addMouseListener (new MouseListener () {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // TODO Auto-generated method stub
-                exitButton.setRolloverIcon(exitolIcon);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-
-
-
-
-        labelBackground.add(startButton);
-        labelBackground.add(exitButton);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+               
+       labelBackground.add(startButton);
+       labelBackground.add(exitButton);
     }
-
-
-
     public static void main (String[] args){
-
         new Window();
-
+     
+      
+        
     }
-
-
+    
 }
+
 

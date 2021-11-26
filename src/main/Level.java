@@ -11,7 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
-public class Level {
+public class Level  {
+	
+	
+
 	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
@@ -23,6 +26,7 @@ public class Level {
 	private String correctAnimals [];
 	private String answerAnimals;
 	static Sound click = new Sound();
+	static Sound music = new Sound();
 
     public Level() {
 
@@ -42,14 +46,21 @@ public class Level {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
+        
+        music.setLocationSong("/src/sounds/song.wav");
+        music.play();
 
-
+        
         backToMenuBotton = new LBotton("backToMenu",1380,20,93,93);
+        
 		backToMenuBotton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Window();
+				music.stop();
 				frame.dispose();
+				
 			}
 		});
 
@@ -95,23 +106,46 @@ public class Level {
 		}
 
 		Thread t1 = new Thread(new Runnable() {
-			public void run()
-			{
-				try {
-
-					for (int i=0;i< correctAnimals.length ; i++){
-						sleep(1200);
-						System.out.println(correctAnimals[i]);
-						click.setLocationSong("/sounds/"+ correctAnimals[i] +".wav");
-						click.play();
+			public void run(){
+				for (int i = 0 ; i< correctAnimals.length ; i++) {
+					switch (correctAnimals[i]) {
+						case "dog":
+							dogButton.changeIcon();
+							break;
+						case "cat":
+							catButton.changeIcon();
+							break;
+						case "cow":
+							cowButton.changeIcon();
+							break;
+						case "chicken":
+							chickenButton.changeIcon();
+							break;
+						case "pig":
+							pigButton.changeIcon();
+							break;
+						case "donkey":
+							donkeyButton.changeIcon();
+							break;
+						case "lyon":
+							lyonButton.changeIcon();
+							break;
+						case "monkey":
+							monkeyButton.changeIcon();
+							break;
+						case "sheep":
+							sheepButton.changeIcon();
+							break;
+						case "wolf":
+							wolfButton.changeIcon();
+							break;
 					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					System.out.println(correctAnimals[i]);
 				}
-				}});
+			}});
 		t1.start();
 
 		return correctAnimals;
 	}
-
+	
 }

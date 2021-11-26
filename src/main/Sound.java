@@ -13,9 +13,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
-import static java.lang.Thread.sleep;
+
 
 
 public class Sound extends JButton {
@@ -56,5 +55,11 @@ public class Sound extends JButton {
    
    public void setLocationSong(String a) {
 	  archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + a);
+   }
+   public void stop() {
+	   clip.stop();
+   }
+   public void loop() {
+	   clip.loop(1);
    }
 }
