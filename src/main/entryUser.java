@@ -43,7 +43,7 @@ public class entryUser extends JFrame{
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
-			new mainMenu();
+			new MainMenu();
 			dispose();
 		
 			}
@@ -54,7 +54,7 @@ public class entryUser extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual, que no lo he configurado
-			 new player(submitAction(), 3,Level.outLevel);
+			 new Player(submitAction(), 3,Level.outLevel);
 			 //llama al contador del 3.2.1 etc
 			 new CountForm(true);		
 			}

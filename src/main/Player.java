@@ -2,13 +2,13 @@ package main;
 
 import javax.swing.JFrame;
 
-public class player{
+public class Player {
 	
 	private int nivelAlcanzado;
 	private final String nombre;
 	private int vidas;
 
-	player(String nombre, int vidas, int nivenAlcanzado){
+	Player(String nombre, int vidas, int nivenAlcanzado){
 		this.vidas = vidas;
 		this.nombre = nombre;
 		this.nivelAlcanzado= nivenAlcanzado;

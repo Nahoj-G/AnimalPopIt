@@ -22,11 +22,12 @@ public class Level extends JFrame {
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [],answerAnimals[];
 	private int position, inicio,level;
-	static int outLevel; 
-	static Sound music = new Sound();
+	public static int outLevel;
+	private static Sound music = new Sound();
+	private boolean passLevel;
 	
     public Level() {
-    	
+		passLevel = false;
     	position = 0;
 		inicio=3;
 		level=1;
@@ -62,7 +63,7 @@ public class Level extends JFrame {
         		backToMenuBotton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new mainMenu();
+				new MainMenu();
 				music.stop();
 				dispose();						
 			}
@@ -232,7 +233,11 @@ public class Level extends JFrame {
 		Thread t1 = new Thread(new Runnable() {
 			public void run(){
 				try {
-					sleep(1000);
+					if (!passLevel){
+						sleep(1000);
+					}else{
+						sleep(4000);
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -285,11 +290,12 @@ public class Level extends JFrame {
 					System.out.println("GANASTE");
 					System.exit(0);					
 				}else {
+					passLevel = true;
 					System.out.println();
 					System.out.println("Avanzaste de nivel");
-					new CountForm(false);					
+					new CountForm(false);
 					position = 0;
-					increaseInicio();					
+					increaseInicio();
 					System.out.println("animales en juego: "+inicio);					
 					correctAnimals = PlaySound(inicio);
 					numberLevel.setText(String.valueOf(level));

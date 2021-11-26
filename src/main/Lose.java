@@ -1,10 +1,8 @@
 package main;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class Lose extends JFrame{
 
@@ -33,7 +31,7 @@ public class Lose extends JFrame{
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
-			new mainMenu();
+			new MainMenu();
 			dispose();		
 			}
 		});

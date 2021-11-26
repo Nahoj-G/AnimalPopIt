@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainMenu {
+public class MainMenu {
 
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
@@ -17,7 +17,7 @@ public class mainMenu {
     private LBotton startButton,exitButton;
     Sound music = new Sound();   
     
-    public mainMenu() {
+    public MainMenu() {
     	
     	System.out.println("Inicializando juego");
     	System.out.println("Animal Pop IT");
