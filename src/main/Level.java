@@ -1,5 +1,6 @@
 package main;
 
+import javax.management.StringValueExp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ public class Level  {
 
     public Level() {
 		position = 0;
+		answerAnimals = new String[9];
 		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
@@ -170,7 +172,7 @@ public class Level  {
 
 		Thread t1 = new Thread(new Runnable() {
 			public void run(){
-				for (int i = 0 ; i< correctAnimals.length ; i++) {
+				for (int i = 0 ; i< count ; i++) {
 					switch (correctAnimals[i]) {
 						case "dog":
 							dogButton.changeIcon();
@@ -211,17 +213,19 @@ public class Level  {
 	}
 
 	public void checkWin(String [] correct, String [] answer){
-		if (position == Integer.parseInt(numberLevel.getText())){
-			if (correct == answer){
+		if (position == Integer.parseInt(numberLevel.getText())+2){
+			if (Arrays.equals(correct,answer)){
 				if (position == 9){
 					// form ganaste
 				}else {
-					// Siguiente nivel
+					position = 0;
+					int newLevel = Integer.parseInt(numberLevel.getText())+3;
+					correctAnimals = PlaySound(newLevel);
+					numberLevel.setText(String.valueOf(newLevel - 2));
 				}
 			}else{
 				//form perdiste
 			}
 		}
 	}
-	
 }
