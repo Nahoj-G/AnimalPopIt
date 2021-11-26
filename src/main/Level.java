@@ -5,27 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
 public class Level  {
-	
-	
+
+
 
 	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JFrame frame;
-	private JLabel labelBackground, numberLevel;
+	private JLabel labelBackground, numberLevel, countDown;
     private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon;
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [];
 	private String answerAnimals;
-	static Sound click = new Sound();
 	static Sound music = new Sound();
 
     public Level() {
@@ -38,6 +34,7 @@ public class Level  {
 		Font font = new Font("Jokerman", Font.PLAIN, 40);
 		numberLevel.setBounds(180,1008,40,40);
 		numberLevel.setFont(font);
+		labelBackground.add(numberLevel);
 
         frame = new JFrame("Animal Pop It");
         frame.add(labelBackground);
@@ -93,9 +90,11 @@ public class Level  {
 		labelBackground.add(sheepButton);
 		labelBackground.add(wolfButton);
 		labelBackground.add(donkeyButton);
-		labelBackground.add(numberLevel);
+
 
 		System.out.println(Arrays.toString(PlaySound(3)));
+
+
 
 	}
 
@@ -144,7 +143,6 @@ public class Level  {
 				}
 			}});
 		t1.start();
-
 		return correctAnimals;
 	}
 	

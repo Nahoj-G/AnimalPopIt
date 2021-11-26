@@ -46,7 +46,7 @@ public class Window {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Level();
+                new CountForm();
                // frame.setVisible(false);
                 music.stop();
                 frame.dispose();
@@ -67,11 +67,7 @@ public class Window {
     }
     public static void main (String[] args){
         new Window();
-     
-      
-        
     }
-    
 }
 
 
