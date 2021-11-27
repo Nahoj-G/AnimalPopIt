@@ -1,10 +1,6 @@
 package main;
 
 import javax.swing.*;
-import javax.swing.JButton;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,7 +37,7 @@ public class MainMenu {
             public void actionPerformed(ActionEvent e) {
              //new CountForm(true);
                frame.setVisible(false);
-               new entryUser();
+               new EntryUser();
                music.stop();
                frame.dispose();
             }

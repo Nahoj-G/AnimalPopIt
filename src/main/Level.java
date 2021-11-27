@@ -15,7 +15,7 @@ import static java.lang.Thread.sleep;
 public class Level extends JFrame {
 	Sound animalLevel = new Sound();
     public static final int WIDTH = 1514,  HEIGHT = 1080;
-   	private JLabel labelBackground, numberLevel;
+   	private JLabel labelBackground, numberLevel,userPlayer;
     private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon,windowIcon;
@@ -25,6 +25,8 @@ public class Level extends JFrame {
 	public static int outLevel;
 	private static Sound music = new Sound();
 	private boolean passLevel;
+	private Hearts h1,h2,h3;
+
 	
     public Level() {
 		passLevel = false;
@@ -37,14 +39,11 @@ public class Level extends JFrame {
 		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
-		numberLevel = new JLabel();
-		//toco asi, porque del 2 en adelante no los mostraba
-		numberLevel.setText("1");
-		//aqui podemos ahorrar codigo creando el objecto y dandolo como parametro
-		numberLevel.setFont(new Font("Jokerman", Font.PLAIN, 95));
-		numberLevel.setBounds(60,900,95,95);
+		userPlayer = new LLabel(EntryUser.player.getNombre(),180,40,350,40,40);
+
+		numberLevel = new LLabel("1",60,900,95,95,95);
 		labelBackground.add(numberLevel);
-		
+		labelBackground.add(userPlayer);
 		System.out.println("animales en juego: "+inicio);
 		System.out.println("Nivel de juego actual ---> "+(String.valueOf(numberLevel.getText())));
      
@@ -199,6 +198,10 @@ public class Level extends JFrame {
 			}
 		});
 
+		h1 = new Hearts("heart",180,80);
+		h2 = new Hearts("heart",220,80);
+		h3 = new Hearts("heart",260,80);
+
         labelBackground.add(cowButton);
         labelBackground.add(dogButton);
         labelBackground.add(backToMenuBotton);
@@ -211,6 +214,9 @@ public class Level extends JFrame {
 		labelBackground.add(wolfButton);
 		labelBackground.add(donkeyButton);
 		labelBackground.add(numberLevel);
+		labelBackground.add(h1);
+		labelBackground.add(h2);
+		labelBackground.add(h3);
 		 
 		repaint();
 		
@@ -306,8 +312,33 @@ public class Level extends JFrame {
 				System.out.println();
 				System.out.println();
 				System.out.println("YA VALISTE MADRE");
-				new Lose();
-				music.stop();			
+				if (EntryUser.player.getVidas()==0){
+					new Lose();
+					music.stop();
+				}else {
+					EntryUser.player.setVidas(EntryUser.player.getVidas()-1);
+					passLevel = true;
+					System.out.println();
+					System.out.println("Repite el nivel");
+					new CountForm(false);
+					position = 0;
+					System.out.println("animales en juego: "+inicio);
+					correctAnimals = PlaySound(inicio);
+					numberLevel.setText(String.valueOf(level));
+					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
+
+					switch (EntryUser.player.getVidas()) {
+						case 2:
+							h3.changeIcon();
+							break;
+						case 1:
+							h2.changeIcon();
+							break;
+						case 0:
+							h1.changeIcon();
+							break;
+					}
+				}
 			}		
 	}
 	private void increaseInicio() {

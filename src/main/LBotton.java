@@ -30,8 +30,8 @@ public class LBotton extends JButton {
             }
             @Override
             public void mousePressed(MouseEvent e) {
-            	click.setLocationSong("/src/sounds/" + name + ".wav");
-                click.play();
+                    click.setLocationSong("/src/sounds/" + name + ".wav");
+                    click.play();
             }
             @Override
             public void mouseReleased(MouseEvent e) {

@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JFrame;
-
 public class Player {
 	
 	private int nivelAlcanzado;
@@ -12,16 +10,12 @@ public class Player {
 		this.vidas = vidas;
 		this.nombre = nombre;
 		this.nivelAlcanzado= nivenAlcanzado;
-		
 	}
 
-	
-	//PUES NOSE, YA SE ME OLVIDO QUE IBA AQUI!	
-	
-	
-	
-	
-	
+	public String getNombre() {
+		return nombre;
+	}
+
 	public int getVidas() {
 		return vidas;
 	}
@@ -37,12 +31,6 @@ public class Player {
 	public void setNivelAlcanzado(int nivelAlcanzado) {
 		this.nivelAlcanzado = nivelAlcanzado;
 	};
-	
-	
-	
-	
-	
-	
-	
+
 }
 

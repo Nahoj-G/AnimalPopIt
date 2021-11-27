@@ -48,6 +48,7 @@ public class Lose extends JFrame{
    		backToMenu2Botton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			EntryUser.player.setVidas(3);
 			new CountForm(true);
 			dispose();			
 		}

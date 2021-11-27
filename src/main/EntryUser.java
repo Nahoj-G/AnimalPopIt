@@ -5,15 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class entryUser extends JFrame{
+public class EntryUser extends JFrame{
 
     public static final int WIDTH = 1514,  HEIGHT = 1080;
     private JLabel labelBackground;
     private LBotton initBotton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
     private JTextField popUser;
+    static public  Player player;
      
-    public entryUser(){    	
+    public EntryUser(){
     	
     	animalIcon = new ImageIcon(this.getClass().getResource("/images/entryUser.png"));    	
         windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
@@ -53,11 +54,16 @@ public class entryUser extends JFrame{
 		initBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual, que no lo he configurado
-			 new Player(submitAction(), 3,Level.outLevel);
-			 //llama al contador del 3.2.1 etc
-			 new CountForm(true);		
-			}
+
+            if (submitAction().equals("")){
+                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                //se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual, que no lo he configurado
+                player = new Player(submitAction(), 3, Level.outLevel);
+                //llama al contador del 3.2.1 etc
+                new CountForm(true);
+            }
+        }
 		});
 		
         labelBackground.add(menuBotton);
