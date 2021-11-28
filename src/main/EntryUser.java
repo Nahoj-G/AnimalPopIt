@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 
 public class EntryUser extends JFrame{
 
-    public static final int WIDTH = 1514,  HEIGHT = 1080;
+    private static final int WIDTH = 1514,  HEIGHT = 1080;
     private JLabel labelBackground;
     private LBotton initBotton,menuBotton;
     private ImageIcon animalIcon,windowIcon;

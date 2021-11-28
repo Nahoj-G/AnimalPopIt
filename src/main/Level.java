@@ -14,16 +14,18 @@ import static java.lang.Thread.sleep;
 
 public class Level extends JFrame {
 
-    public static final int WIDTH = 1514,  HEIGHT = 1080;
+	private static final int WIDTH = 1514,  HEIGHT = 1080;
    	private JLabel labelBackground, numberLevel,userPlayer;
-    private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
+    private Animals catButton,chickenButton,dogButton,frogButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
 	private ImageIcon animalIcon,windowIcon,dackgroundShade;
-	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
+	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [],answerAnimals[];
 	private int position, inicio,level;
 	public static int outLevel;
-	private static Sound music = new Sound();
+	private Sound music = new Sound();
+	private Sound wrongSound = new Sound();
+	
 	private boolean passLevel;
 	private Hearts h1,h2,h3;
 	private LLabel tryAgain,backgroundShade;
@@ -60,7 +62,8 @@ public class Level extends JFrame {
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
         music.setLocationSong("/src/sounds/song.wav");
-        music.play();        
+        music.play();
+        music.loop(10);
         
         backToMenuBotton = new LBotton("backToMenu",1380,20,93,93);
         		backToMenuBotton.addActionListener(new ActionListener() {
@@ -71,8 +74,25 @@ public class Level extends JFrame {
 				dispose();						
 			}
 		});
-
-		dogButton = new Animals("dog",185,285);
+        		
+        		
+        		
+        		
+        monkeyButton = new Animals("monkey",210,270,241,220);
+        monkeyButton.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {				
+        		answerAnimals [position] =  "monkey"; position++;
+        		System.out.println("vamos en la posicion :  "+position);
+        		System.out.println(monkeyButton.getName());
+        		if(position==inicio) {
+        			checkWin(correctAnimals,answerAnimals);
+        		}
+        	}
+        });		
+        		
+        	        		
+        dogButton = new Animals("dog",570,265,198,242);
 		dogButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {					
@@ -83,48 +103,102 @@ public class Level extends JFrame {
 					checkWin(correctAnimals,answerAnimals);
 					}						
 			}
-		});
-
-		catButton = new Animals("cat",435,700);
-		catButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "cat"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(catButton.getName());
-				if(position==inicio) {
+		});		
+        		
+        		
+		 cowButton = new Animals("cow",842,264,316,263);
+			cowButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {				
+					answerAnimals [position] =  "cow"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(cowButton.getName());
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});		
+        		
+			catButton = new Animals("cat",1215,270,145,284);
+			catButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {				
+					answerAnimals [position] =  "cat"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(catButton.getName());
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});	
+        		
+			wolfButton = new Animals("wolf",40,535,251,307);
+			wolfButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {	
+					answerAnimals [position] =  "wolf"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(wolfButton.getName());
+					if(position==inicio) {
 					checkWin(correctAnimals,answerAnimals);
 					}
-			}
-		});
+				}
+			});
+        	
+			sheepButton = new Animals("sheep",361,655,201,266);
+			sheepButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {			
+					answerAnimals [position] =  "sheep"; position++;				
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(sheepButton.getName());				
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});
+        		
+        		        		
+			frogButton = new Animals("frog",575,785,214,240);
+			frogButton.addActionListener(new ActionListener() {			
+				@Override
+				public void actionPerformed(ActionEvent e) {				
+					answerAnimals [position] =  "frog"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(frogButton.getName());
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});	
+        		
+			chickenButton = new Animals("chicken",675,505,195,254);
+			chickenButton.addActionListener(new ActionListener() {			
+				@Override
+				public void actionPerformed(ActionEvent e) {				
+					answerAnimals [position] =  "chicken"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(chickenButton.getName());
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});	
+        		
+			lyonButton = new Animals("lyon",900,612,281,296);
+			lyonButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {				
+					answerAnimals [position] =  "lyon"; position++;
+					System.out.println("vamos en la posicion :  "+position);
+					System.out.println(lyonButton.getName());				
+					if(position==inicio) {
+						checkWin(correctAnimals,answerAnimals);
+						}
+				}
+			});
 
-        cowButton = new Animals("cow",910,235);
-		cowButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "cow"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(cowButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
-
-		chickenButton = new Animals("chicken",660,215);
-		chickenButton.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "chicken"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(chickenButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
-
-		pigButton = new Animals("pig",420,215);
+		pigButton = new Animals("pig",1195,795,291,211);
 		pigButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {				
@@ -137,76 +211,29 @@ public class Level extends JFrame {
 			}
 		});
 
-		donkeyButton = new Animals("donkey",1180,215);
-		donkeyButton.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "donkey"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(donkeyButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
+		
 
-		lyonButton = new Animals("lyon",680,730);
-		lyonButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "lyon"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(lyonButton.getName());				
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
+	
 
-		monkeyButton = new Animals("monkey",930,700);
-		monkeyButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {				
-				answerAnimals [position] =  "monkey"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(monkeyButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
+	
 
-		sheepButton = new Animals("sheep",1200,720);
-		sheepButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {			
-				answerAnimals [position] =  "sheep"; position++;				
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(sheepButton.getName());				
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			}
-		});
+		
 
-		wolfButton = new Animals("wolf",180,600);
-		wolfButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {	
-				answerAnimals [position] =  "wolf"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(wolfButton.getName());
-				if(position==inicio) {
-				checkWin(correctAnimals,answerAnimals);
-				}
-			}
-		});
+		
 
 		
 		
-		h1 = new Hearts("heart",190,88);
-		h2 = new Hearts("heart",227,88);
-		h3 = new Hearts("heart",264,88);
+		h1 = new Hearts("heart",183,81);
+		h2 = new Hearts("heart",220,81);
+		h3 = new Hearts("heart",259,81);
+		
+		labelBackground.add(tryAgain);
+		labelBackground.add(backgroundShade);
+		tryAgain.setVisible(false);
+		tryAgain.setForeground(Color.WHITE);
+		tryAgain.setHorizontalAlignment(JTextField.CENTER);;
+		backgroundShade.setIcon(dackgroundShade);
+		backgroundShade.setVisible(false);
 
         labelBackground.add(cowButton);
         labelBackground.add(dogButton);
@@ -218,18 +245,12 @@ public class Level extends JFrame {
 		labelBackground.add(pigButton);
 		labelBackground.add(sheepButton);
 		labelBackground.add(wolfButton);
-		labelBackground.add(donkeyButton);
+		labelBackground.add(frogButton);
 		labelBackground.add(numberLevel);
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
-		labelBackground.add(tryAgain);
-		labelBackground.add(backgroundShade);
-		tryAgain.setVisible(false);
-		tryAgain.setForeground(Color.WHITE);
-		tryAgain.setHorizontalAlignment(JTextField.CENTER);;
-		backgroundShade.setIcon(dackgroundShade);
-		backgroundShade.setVisible(false);
+		
 		
 		repaint();
 		
@@ -277,8 +298,8 @@ public class Level extends JFrame {
 						case "pig":
 							pigButton.changeIcon();
 							break;
-						case "donkey":
-							donkeyButton.changeIcon();
+						case "frog":
+							frogButton.changeIcon();
 							break;
 						case "lyon":
 							lyonButton.changeIcon();
@@ -326,15 +347,21 @@ public class Level extends JFrame {
 				System.out.println();
 				System.out.println("El usuario perdio");
 				if (EntryUser.player.getVidas()==1){
-					new Lose();
 					music.stop();
+					dispose();
+					new Lose();
+					Animals.stopMusic();
+					
 				}else {
 					EntryUser.player.setVidas(EntryUser.player.getVidas()-1);
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
+					wrongSound.setLocationSong("/src/sounds/error.wav");
+			        wrongSound.play();
 					tryAgain.setVisible(true);
 					backgroundShade.setVisible(true);
+					
 					Thread t1 = new Thread(new Runnable() {
 						public void run(){
 
@@ -374,4 +401,6 @@ public class Level extends JFrame {
 		level++;
 		answerAnimals = new String[inicio];		
 	}
+	
+	
 }

@@ -10,17 +10,17 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class Animals extends JButton {
-		Sound click = new Sound();
+		static Sound click = new Sound();
 		private final ImageIcon icon, iconShade;
 		private final String name;
 
-		public Animals(String name,int x, int y){
+		public Animals(String name,int x, int y, int h, int w ){
 			this.name = name;
 			icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
 			iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
 			
 			setIcon(iconShade);
-			setBounds(x,y,192,289);
+			setBounds(x,y,h,w);
 			setContentAreaFilled(false);
 			setBorder(null);
 			setFocusPainted(false);
@@ -70,5 +70,8 @@ public class Animals extends JButton {
 			setContentAreaFilled(false);
 			setBorder(null);
 		}
-		
+		public static void stopMusic()
+		{
+			click.stop();
+		}
 }

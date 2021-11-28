@@ -10,6 +10,7 @@ public class Lose extends JFrame{
     private JLabel labelBackground;
     private LBotton FinBotton,backToMenu2Botton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
+    private static Sound musicLose = new Sound();
  
     public Lose(){
 
@@ -26,6 +27,9 @@ public class Lose extends JFrame{
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
+        musicLose.setLocationSong("/src/sounds/gameOver.wav");
+        musicLose.play();
+        
 
         menuBotton = new LBotton("menu",520,523,126,126);
 		menuBotton.addActionListener(new ActionListener() {

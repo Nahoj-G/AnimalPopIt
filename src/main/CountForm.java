@@ -10,7 +10,7 @@ import static java.lang.Thread.sleep;
 
 public class CountForm extends JFrame{
 
-    public static final int WIDTH = 1514,  HEIGHT = 1080;
+    private static final int WIDTH = 1514,  HEIGHT = 1080;
     private JLabel labelBackground, countDown;
     private ImageIcon animalIcon,windowIcon;
     private Boolean makeLevel;
