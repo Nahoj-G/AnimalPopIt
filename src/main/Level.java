@@ -2,7 +2,7 @@ package main;
 
 
 import javax.swing.*;
-
+import javax.swing.border.TitledBorder;
 
 
 import java.awt.*;
@@ -13,12 +13,12 @@ import java.util.Arrays;
 import static java.lang.Thread.sleep;
 
 public class Level extends JFrame {
-	Sound animalLevel = new Sound();
+
     public static final int WIDTH = 1514,  HEIGHT = 1080;
    	private JLabel labelBackground, numberLevel,userPlayer;
     private Animals catButton,chickenButton,dogButton,donkeyButton,lyonButton,monkeyButton,pigButton,sheepButton,wolfButton,cowButton;
 	private LBotton backToMenuBotton;
-	private ImageIcon animalIcon,windowIcon;
+	private ImageIcon animalIcon,windowIcon,dackgroundShade;
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","donkey","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [],answerAnimals[];
 	private int position, inicio,level;
@@ -26,6 +26,8 @@ public class Level extends JFrame {
 	private static Sound music = new Sound();
 	private boolean passLevel;
 	private Hearts h1,h2,h3;
+	private LLabel tryAgain,backgroundShade;
+	
 
 	
     public Level() {
@@ -35,13 +37,15 @@ public class Level extends JFrame {
 		level=1;
 		outLevel=level;
 		answerAnimals = new String[inicio];
-		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));
-		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
+		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));		
+		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
+		dackgroundShade = new ImageIcon(this.getClass().getResource("/images/level_background_shade.png"));
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
-		userPlayer = new LLabel(EntryUser.player.getNombre(),180,40,350,40,40);
-
+		userPlayer = new LLabel(EntryUser.player.getNombre(),180,38,350,42,30);
 		numberLevel = new LLabel("1",60,900,95,95,95);
+		tryAgain = new LLabel("Intenta de nuevo",0,0,WIDTH,HEIGHT,75);
+		backgroundShade = new LLabel("",0,0,WIDTH,HEIGHT,75);
 		labelBackground.add(numberLevel);
 		labelBackground.add(userPlayer);
 		System.out.println("animales en juego: "+inicio);
@@ -198,9 +202,11 @@ public class Level extends JFrame {
 			}
 		});
 
-		h1 = new Hearts("heart",180,80);
-		h2 = new Hearts("heart",220,80);
-		h3 = new Hearts("heart",260,80);
+		
+		
+		h1 = new Hearts("heart",190,88);
+		h2 = new Hearts("heart",227,88);
+		h3 = new Hearts("heart",264,88);
 
         labelBackground.add(cowButton);
         labelBackground.add(dogButton);
@@ -217,7 +223,14 @@ public class Level extends JFrame {
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
-		 
+		labelBackground.add(tryAgain);
+		labelBackground.add(backgroundShade);
+		tryAgain.setVisible(false);
+		tryAgain.setForeground(Color.WHITE);
+		tryAgain.setHorizontalAlignment(JTextField.CENTER);;
+		backgroundShade.setIcon(dackgroundShade);
+		backgroundShade.setVisible(false);
+		
 		repaint();
 		
 		correctAnimals = new String[inicio];
@@ -311,8 +324,8 @@ public class Level extends JFrame {
 				//form perdiste
 				System.out.println();
 				System.out.println();
-				System.out.println("YA VALISTE MADRE");
-				if (EntryUser.player.getVidas()==0){
+				System.out.println("El usuario perdio");
+				if (EntryUser.player.getVidas()==1){
 					new Lose();
 					music.stop();
 				}else {
@@ -320,10 +333,25 @@ public class Level extends JFrame {
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
-					new CountForm(false);
+					tryAgain.setVisible(true);
+					backgroundShade.setVisible(true);
+					Thread t1 = new Thread(new Runnable() {
+						public void run(){
+
+							try {
+								sleep(2000);
+								tryAgain.setVisible(false);
+								backgroundShade.setVisible(false);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}});
+					t1.start();
+
+
+
 					position = 0;
 					System.out.println("animales en juego: "+inicio);
-					correctAnimals = PlaySound(inicio);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 
@@ -345,5 +373,5 @@ public class Level extends JFrame {
 		inicio++;
 		level++;
 		answerAnimals = new String[inicio];		
-	}	
+	}
 }

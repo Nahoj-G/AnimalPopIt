@@ -8,8 +8,9 @@ public class Player {
 
 	Player(String nombre, int vidas, int nivenAlcanzado){
 		this.vidas = vidas;
+		nombre = nombre.substring(0,1).toUpperCase() + nombre.substring(1);
 		this.nombre = nombre;
-		this.nivelAlcanzado= nivenAlcanzado;
+		this.nivelAlcanzado= nivenAlcanzado;		
 	}
 
 	public String getNombre() {
@@ -30,7 +31,6 @@ public class Player {
 
 	public void setNivelAlcanzado(int nivelAlcanzado) {
 		this.nivelAlcanzado = nivelAlcanzado;
-	};
-
+	}
+	
 }
-

@@ -12,7 +12,7 @@ import static java.lang.Thread.sleep;
 public class Hearts extends JButton{
     private final ImageIcon icon, iconShade;
     private final String name;
-    Sound click = new Sound();
+   // Sound click = new Sound();
 
     public Hearts(String name,int x, int y) {
         this.name = name;
@@ -33,8 +33,7 @@ public class Hearts extends JButton{
         setIcon(iconShade);
         setContentAreaFilled(false);
         setBorder(null);
-        click.setLocationSong("/sounds/" + name + ".wav");
-        click.play();
+       // click.setLocationSong("/sounds/" + name + ".wav");
+        //click.play();
     }
 }
-
