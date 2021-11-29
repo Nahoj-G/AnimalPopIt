@@ -19,11 +19,11 @@ public class CountForm extends JFrame{
     public CountForm(Boolean makeLevel){    	
     	
     	if(makeLevel) {
-    		animalIcon = new ImageIcon(this.getClass().getResource("./images/FirstLevel.png"));
+    		animalIcon = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
     	}else {
-    		animalIcon = new ImageIcon(this.getClass().getResource("./images/nextLevelLoading.png"));
+    		animalIcon = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
     	}        
-        windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
+        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
         
@@ -52,11 +52,11 @@ public class CountForm extends JFrame{
                 	
                 	if(i==0) {
                 		countDown.setText("Go");
-                		conteo.setLocationSong("./sounds/start.wav");
+                		conteo.setLocationSong("/sounds/start.wav");
                     	conteo.play();
                 	}else {
                 		countDown.setText(String.valueOf(i));
-                		conteo.setLocationSong("./sounds/conter.wav");
+                		conteo.setLocationSong("/sounds/conter.wav");
                 		conteo.play();
                 		try {
                         sleep(1000);

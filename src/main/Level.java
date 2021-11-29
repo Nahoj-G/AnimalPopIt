@@ -2,9 +2,6 @@ package main;
 
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +19,9 @@ public class Level extends JFrame {
 	private static String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String correctAnimals [],answerAnimals[];
 	private int position, inicio,level;
-	public static int outLevel;
+	private static int outLevel;
 	private Sound music = new Sound();
-	private Sound wrongSound = new Sound();
-	
+	private Sound wrongSound = new Sound();	
 	private boolean passLevel;
 	private Hearts h1,h2,h3;
 	private LLabel tryAgain,backgroundShade;
@@ -34,16 +30,16 @@ public class Level extends JFrame {
     public Level() {
 		passLevel = false;
     	position = 0;
-		inicio=3;
+		inicio=1;
 		level=1;
 		outLevel=level;
 		answerAnimals = new String[inicio];
-		animalIcon = new ImageIcon(this.getClass().getResource("./images/level_background.png"));
-		windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
-		dackgroundShade = new ImageIcon(this.getClass().getResource("./images/level_background_shade.png"));
+		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));		
+		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
+		dackgroundShade = new ImageIcon(this.getClass().getResource("/images/level_background_shade.png"));
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
-		userPlayer = new LLabel(EntryUser.player.getNombre(),180,38,350,42,30);
+		userPlayer = new LLabel(EntryUser.getPlayer().getNombre(),180,38,350,42,30);
 		numberLevel = new LLabel("1",60,900,95,95,95);
 		tryAgain = new LLabel("Intenta de nuevo",0,0,WIDTH,HEIGHT,75);
 		backgroundShade = new LLabel("",0,0,WIDTH,HEIGHT,75);
@@ -60,7 +56,7 @@ public class Level extends JFrame {
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
-        music.setLocationSong("./sounds/song.wav");
+        music.setLocationSong("/sounds/song.wav");
         music.play();
         music.loop(10);
         
@@ -209,19 +205,20 @@ public class Level extends JFrame {
 					}
 			}
 		});
-
-		h1 = new Hearts("heart",183,81);
-		h2 = new Hearts("heart",220,81);
-		h3 = new Hearts("heart",259,81);
-		
-		labelBackground.add(tryAgain);
-		labelBackground.add(backgroundShade);
 		tryAgain.setVisible(false);
 		tryAgain.setForeground(Color.WHITE);
 		tryAgain.setHorizontalAlignment(JTextField.CENTER);;
 		backgroundShade.setIcon(dackgroundShade);
 		backgroundShade.setVisible(false);
 
+		
+		
+		h1 = new Hearts("heart",183,81);
+		h2 = new Hearts("heart",220,81);
+		h3 = new Hearts("heart",259,81);
+		
+		labelBackground.add(tryAgain);
+		labelBackground.add(backgroundShade);
         labelBackground.add(cowButton);
         labelBackground.add(dogButton);
         labelBackground.add(backToMenuBotton);
@@ -237,6 +234,7 @@ public class Level extends JFrame {
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
+		
 		
 		
 		repaint();
@@ -311,7 +309,7 @@ public class Level extends JFrame {
 
 	public void checkWin(String [] correct, String [] answer){		
 			if (Arrays.equals(correct,answer)){			
-				if (position ==10){
+				if (position ==15){
 					// form ganaste
 					System.out.println();
 					System.out.println("GANASTE");
@@ -327,24 +325,25 @@ public class Level extends JFrame {
 					correctAnimals = PlaySound(inicio);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
+					EntryUser.getPlayer().setNivelAlcanzado(Integer.parseInt((numberLevel.getText())));
 				}
 			}else{
 				//form perdiste
 				System.out.println();
 				System.out.println();
 				System.out.println("El usuario perdio");
-				if (EntryUser.player.getVidas()==1){
+				if (EntryUser.getPlayer().getVidas()==1){
 					music.stop();
 					dispose();
 					new Lose();
 					Animals.stopMusic();
 					
 				}else {
-					EntryUser.player.setVidas(EntryUser.player.getVidas()-1);
+					EntryUser.getPlayer().setVidas(EntryUser.getPlayer().getVidas()-1);
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
-					wrongSound.setLocationSong("./sounds/error.wav");
+					wrongSound.setLocationSong("/sounds/error.wav");
 			        wrongSound.play();
 					tryAgain.setVisible(true);
 					backgroundShade.setVisible(true);
@@ -363,13 +362,12 @@ public class Level extends JFrame {
 					t1.start();
 
 
-
 					position = 0;
 					System.out.println("animales en juego: "+inicio);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 
-					switch (EntryUser.player.getVidas()) {
+					switch (EntryUser.getPlayer().getVidas()) {
 						case 2:
 							h3.changeIcon();
 							break;
@@ -388,6 +386,9 @@ public class Level extends JFrame {
 		level++;
 		answerAnimals = new String[inicio];		
 	}
+	/*private String getLevel() {
+		
+	}*/
 	
 	
 }

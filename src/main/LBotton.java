@@ -12,8 +12,8 @@ public class LBotton extends JButton {
     private ImageIcon bottonIcon,bottonHoverIcon;
 
     public LBotton (String name, int x, int y,int w, int h){
-    	bottonIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + "Botton.png")));
-    	bottonHoverIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + "BottonHover.png")));
+    	bottonIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Botton.png")));
+    	bottonHoverIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "BottonHover.png")));
         setIcon(bottonIcon);
         setBounds(x,y,w,h);
         setContentAreaFilled(false);
@@ -30,7 +30,7 @@ public class LBotton extends JButton {
             }
             @Override
             public void mousePressed(MouseEvent e) {
-                    click.setLocationSong("./sounds/" + name + ".wav");
+                    click.setLocationSong("/sounds/" + name + ".wav");
                     click.play();
             }
             @Override

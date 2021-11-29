@@ -1,10 +1,8 @@
 <component name="ArtifactManager">
-  <artifact name="Animal Pop It:jar">
+  <artifact type="jar" build-on-make="true" name="Animal Pop It:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Animal_Pop_It_jar</output-path>
-    <root id="root">
-      <element id="archive" name="Animal Pop It.jar">
-        <element id="module-output" name="Animal Pop It" />
-      </element>
+    <root id="archive" name="Animal Pop It_jar.jar">
+      <element id="module-output" name="Animal Pop It" />
     </root>
   </artifact>
 </component>

@@ -7,15 +7,15 @@ import java.awt.event.ActionListener;
 public class Lose extends JFrame{
 
     public static final int WIDTH = 1520,  HEIGHT = 1100;
-    private JLabel labelBackground;
+    private JLabel labelBackground,userPlayer;
     private LBotton FinBotton,backToMenu2Botton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
     private static Sound musicLose = new Sound();
  
     public Lose(){
 
-        animalIcon = new ImageIcon(this.getClass().getResource("./images/perdiste.png"));
-        windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
+        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));        
+        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);       
         
@@ -27,11 +27,11 @@ public class Lose extends JFrame{
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
-        musicLose.setLocationSong("./sounds/gameOver.wav");
+        musicLose.setLocationSong("/sounds/gameOver.wav");
         musicLose.play();
         
 
-        menuBotton = new LBotton("menu",520,523,126,126);
+        menuBotton = new LBotton("menu",520,615,126,126);
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
@@ -40,7 +40,7 @@ public class Lose extends JFrame{
 			}
 		});
 		
-        FinBotton = new LBotton("Fin",865,523,126,126);
+        FinBotton = new LBotton("Fin",865,615,126,126);
 		FinBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
@@ -48,19 +48,27 @@ public class Lose extends JFrame{
 			}
 		});		
           
-		backToMenu2Botton = new LBotton("backToMenu2",685,523,126,126);
+		backToMenu2Botton = new LBotton("backToMenu2",685,615,126,126);
    		backToMenu2Botton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			EntryUser.player.setVidas(3);
+			EntryUser.getPlayer().setVidas(3);
 			new CountForm(true);
 			dispose();			
 		}
+		
+		
+		
+		
 	});
+   		
+   		userPlayer = new LLabel("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getNivelAlcanzado(),492,540,1500,48,45);
+		labelBackground.add(userPlayer);      
         labelBackground.add(menuBotton);
 		labelBackground.add(FinBotton);
 		labelBackground.add(backToMenu2Botton);
 		add(labelBackground);
 		repaint();
     }
+    
 }

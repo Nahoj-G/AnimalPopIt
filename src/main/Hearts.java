@@ -12,12 +12,12 @@ import static java.lang.Thread.sleep;
 public class Hearts extends JButton{
     private final ImageIcon icon, iconShade;
     private final String name;
-   // Sound click = new Sound();
+   
 
     public Hearts(String name,int x, int y) {
         this.name = name;
-        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + ".png")));
-        iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + "Shade.png")));
+        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
+        iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
 
         setIcon(icon);
         setBounds(x, y, 32, 32);
@@ -33,7 +33,6 @@ public class Hearts extends JButton{
         setIcon(iconShade);
         setContentAreaFilled(false);
         setBorder(null);
-       // click.setLocationSong("/sounds/" + name + ".wav");
-        //click.play();
+    
     }
 }

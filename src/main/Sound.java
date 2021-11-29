@@ -1,5 +1,3 @@
-
-
 package main;
 
 import java.awt.event.ActionEvent;
@@ -14,6 +12,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
+
+
+
 public class Sound extends JButton {
    
    private File archivowav;
@@ -24,12 +25,14 @@ public class Sound extends JButton {
     * Constructor de clase
     */
       public Sound() {
+      
       archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "");
+       
       Sound.this.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {                
-                play();
-           }
+                play();           }
+
        });
    }
    
