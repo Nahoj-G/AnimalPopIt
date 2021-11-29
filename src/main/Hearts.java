@@ -16,8 +16,8 @@ public class Hearts extends JButton{
 
     public Hearts(String name,int x, int y) {
         this.name = name;
-        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
-        iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
+        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + ".png")));
+        iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + "Shade.png")));
 
         setIcon(icon);
         setBounds(x, y, 32, 32);

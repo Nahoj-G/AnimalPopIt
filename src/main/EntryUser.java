@@ -18,8 +18,8 @@ public class EntryUser extends JFrame{
      
     public EntryUser(){
     	
-    	animalIcon = new ImageIcon(this.getClass().getResource("/images/entryUser.png"));    	
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
+    	animalIcon = new ImageIcon(this.getClass().getResource("./images/entryUser.png"));
+        windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
         
@@ -53,7 +53,8 @@ public class EntryUser extends JFrame{
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 					if (submitAction().equals("")){
-		                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
+		                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador",
+                                "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
 		            }else {
 		                //se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual
 		                player = new Player(submitAction(), 3, Level.outLevel);
@@ -84,7 +85,8 @@ public class EntryUser extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 
             if (submitAction().equals("")){
-                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador",
+                        "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
             }else {
                 //se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual, que no lo he configurado
                 player = new Player(submitAction(), 3, Level.outLevel);

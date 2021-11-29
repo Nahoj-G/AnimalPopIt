@@ -17,8 +17,8 @@ public class MainMenu {
     	
     	System.out.println("Inicializando juego");
     	System.out.println("Animal Pop IT");
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/index.png"));     
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
+        animalIcon = new ImageIcon(this.getClass().getResource("./images/index.png"));
+        windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
 
@@ -55,7 +55,7 @@ public class MainMenu {
                
        labelBackground.add(startButton);
        labelBackground.add(exitButton);       
-       music.setLocationSong("/sounds/back.wav");
+       music.setLocationSong("./sounds/back.wav");
        music.play();
        music.loop(4);
        frame.repaint();

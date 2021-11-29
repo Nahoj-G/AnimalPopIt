@@ -16,8 +16,8 @@ public class Animals extends JButton {
 
 		public Animals(String name,int x, int y, int h, int w ){
 			this.name = name;
-			icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
-			iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
+			icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + ".png")));
+			iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("./images/" + name + "Shade.png")));
 			
 			setIcon(iconShade);
 			setBounds(x,y,h,w);
@@ -37,7 +37,7 @@ public class Animals extends JButton {
 	    		}
 	    		@Override
 	    		public void mousePressed(MouseEvent e) {  
-	    			click.setLocationSong("/sounds/" + name + ".wav");
+	    			click.setLocationSong("./sounds/" + name + ".wav");
 					click.play();
 	    		}
 	    		@Override
@@ -59,7 +59,7 @@ public class Animals extends JButton {
 			setIcon(icon);
 			setContentAreaFilled(false);
 			setBorder(null);
-			click.setLocationSong("/sounds/" + name + ".wav");
+			click.setLocationSong("./sounds/" + name + ".wav");
 			click.play();
 			try {				
 				sleep(2000);

@@ -14,8 +14,8 @@ public class Lose extends JFrame{
  
     public Lose(){
 
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));        
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
+        animalIcon = new ImageIcon(this.getClass().getResource("./images/perdiste.png"));
+        windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
         labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);       
         
@@ -27,7 +27,7 @@ public class Lose extends JFrame{
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
-        musicLose.setLocationSong("/sounds/gameOver.wav");
+        musicLose.setLocationSong("./sounds/gameOver.wav");
         musicLose.play();
         
 

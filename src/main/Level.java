@@ -38,9 +38,9 @@ public class Level extends JFrame {
 		level=1;
 		outLevel=level;
 		answerAnimals = new String[inicio];
-		animalIcon = new ImageIcon(this.getClass().getResource("/images/level_background.png"));		
-		windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
-		dackgroundShade = new ImageIcon(this.getClass().getResource("/images/level_background_shade.png"));
+		animalIcon = new ImageIcon(this.getClass().getResource("./images/level_background.png"));
+		windowIcon = new ImageIcon(this.getClass().getResource("./images/icon.png"));
+		dackgroundShade = new ImageIcon(this.getClass().getResource("./images/level_background_shade.png"));
 		labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
 		userPlayer = new LLabel(EntryUser.player.getNombre(),180,38,350,42,30);
@@ -60,7 +60,7 @@ public class Level extends JFrame {
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
-        music.setLocationSong("/sounds/song.wav");
+        music.setLocationSong("./sounds/song.wav");
         music.play();
         music.loop(10);
         
@@ -210,18 +210,6 @@ public class Level extends JFrame {
 			}
 		});
 
-		
-
-	
-
-	
-
-		
-
-		
-
-		
-		
 		h1 = new Hearts("heart",183,81);
 		h2 = new Hearts("heart",220,81);
 		h3 = new Hearts("heart",259,81);
@@ -356,7 +344,7 @@ public class Level extends JFrame {
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
-					wrongSound.setLocationSong("/sounds/error.wav");
+					wrongSound.setLocationSong("./sounds/error.wav");
 			        wrongSound.play();
 					tryAgain.setVisible(true);
 					backgroundShade.setVisible(true);
