@@ -1,22 +1,18 @@
 package main;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Lose extends JFrame{
 
     public static final int WIDTH = 1520,  HEIGHT = 1100;
-    private JLabel labelBackground,userPlayer;
-    private LBotton FinBotton,backToMenu2Botton,menuBotton;
-    private ImageIcon animalIcon,windowIcon;
-    private static Sound musicLose = new Sound();
+	private static final Sound musicLose = new Sound();
  
     public Lose(){
 
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));        
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
-        labelBackground = new JLabel(animalIcon);
+		ImageIcon animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/perdiste.png")));
+		ImageIcon windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
+		JLabel labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);       
         
         add(labelBackground);
@@ -29,43 +25,28 @@ public class Lose extends JFrame{
         setTitle("Animal Pop It");
         musicLose.setLocationSong("/sounds/gameOver.wav");
         musicLose.play();
-        
 
-        menuBotton = new LBotton("menu",520,615,126,126);
-		menuBotton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {			
+
+		LBotton menuBotton = new LBotton("menu", 520, 615, 126, 126);
+		menuBotton.addActionListener(e -> {
 			new MainMenu();
-			dispose();		
-			}
-		});
-		
-        FinBotton = new LBotton("Fin",865,615,126,126);
-		FinBotton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {			
-			System.exit(0);		
-			}
-		});		
-          
-		backToMenu2Botton = new LBotton("backToMenu2",685,615,126,126);
-   		backToMenu2Botton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			EntryUser.getPlayer().setVidas(3);
-			new CountForm(true);
-			dispose();			
-		}
-		
-		
-		
-		
-	});
-   		
-   		userPlayer = new LLabel("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getNivelAlcanzado(),492,540,1500,48,45);
+			dispose();
+			});
+
+		LBotton finBotton = new LBotton("Fin", 865, 615, 126, 126);
+		finBotton.addActionListener(e -> System.exit(0));
+
+		LBotton backToMenu2Botton = new LBotton("backToMenu2", 685, 615, 126, 126);
+   		backToMenu2Botton.addActionListener(e -> {
+			   EntryUser.getPlayer().setVidas(3);
+			   new CountForm(true);
+			   dispose();
+		   });
+
+		JLabel userPlayer = new LLabel("LLEGASTE AL NIVEL:  " + EntryUser.getPlayer().getNivelAlcanzado(), 492, 540, 1500, 48, 45);
 		labelBackground.add(userPlayer);      
         labelBackground.add(menuBotton);
-		labelBackground.add(FinBotton);
+		labelBackground.add(finBotton);
 		labelBackground.add(backToMenu2Botton);
 		add(labelBackground);
 		repaint();

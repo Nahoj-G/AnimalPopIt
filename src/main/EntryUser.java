@@ -2,25 +2,21 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Objects;
 
 public class EntryUser extends JFrame{
 
     private static final int WIDTH = 1514,  HEIGHT = 1080;
-    private JLabel labelBackground;
-    private LBotton initBotton,menuBotton;
-    private ImageIcon animalIcon,windowIcon;
-    private JTextField popUser;
+    private final JTextField popUser;
     private static Player player;
      
     public EntryUser(){
-    	
-    	animalIcon = new ImageIcon(this.getClass().getResource("/images/entryUser.png"));    	
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
-        labelBackground = new JLabel(animalIcon);
+
+        ImageIcon animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/entryUser.png")));
+        ImageIcon windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
+        JLabel labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
         
         add(labelBackground);
@@ -68,20 +64,15 @@ public class EntryUser extends JFrame{
         });
               
         //boton para regresar al menu principal
-        menuBotton = new LBotton("menu",600,850,126,126);
-		menuBotton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {			
+        LBotton menuBotton = new LBotton("menu", 600, 850, 126, 126);
+		menuBotton.addActionListener(e -> {
 			new MainMenu();
 			dispose();
-		
-			}
-		});
+
+			});
 		//boton para iniciar el juego.
-        initBotton = new LBotton("initGameFromEntryUSer",775,850,126,126);
-		initBotton.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
+        LBotton initBotton = new LBotton("initGameFromEntryUSer", 775, 850, 126, 126);
+		initBotton.addActionListener(e -> {
 
             if (submitAction().equals("")){
                 JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
@@ -89,12 +80,11 @@ public class EntryUser extends JFrame{
                 //se crea nuevo usuario con el nombre dado en el textfield, vidas, y el nivel actual, que no lo he configurado
                 player = new Player(submitAction(), 3,1);
                 //llama al contador del 3.2.1 etc
-                
+
                 new CountForm(true);
                 dispose();
             }
-        }
-		});
+        });
 		
         labelBackground.add(menuBotton);
 	    labelBackground.add(initBotton);
@@ -109,8 +99,7 @@ public class EntryUser extends JFrame{
         System.out.println(popUser.getText());
         return popUser.getText();
    } 
-    
-    
+
           
 	public static Player getPlayer() {
 		return player;

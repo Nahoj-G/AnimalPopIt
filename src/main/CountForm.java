@@ -2,29 +2,26 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
 public class CountForm extends JFrame{
 
     private static final int WIDTH = 1514,  HEIGHT = 1080;
-    private JLabel labelBackground, countDown;
-    private ImageIcon animalIcon,windowIcon;
-    private Boolean makeLevel;
+    private final JLabel countDown;
     Sound conteo = new Sound();    
     
-    public CountForm(Boolean makeLevel){    	
-    	
-    	if(makeLevel) {
-    		animalIcon = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    public CountForm(Boolean makeLevel){
+
+        ImageIcon animalIcon;
+        if(makeLevel) {
+    		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/FirstLevel.png")));
     	}else {
-    		animalIcon = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
-    	}        
-        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
-        labelBackground = new JLabel(animalIcon);
+    		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/nextLevelLoading.png")));
+    	}
+        ImageIcon windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
+        JLabel labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(WIDTH,HEIGHT);
         
         add(labelBackground);
@@ -41,38 +38,36 @@ public class CountForm extends JFrame{
         countDown.setHorizontalAlignment(JLabel.CENTER);
         labelBackground.add(countDown);          
                     
-        Thread t1 = new Thread(new Runnable() {        	
-           public void run(){
-            	 try {
-                     sleep(300);
-                 } catch (InterruptedException e) {
+        Thread t1 = new Thread(() -> {
+              try {
+                  sleep(300);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+             for (int i = 3 ; i >= 0; i--) {
+
+                 if(i==0) {
+                     countDown.setText("Go");
+                     conteo.setLocationSong("/sounds/start.wav");
+                     conteo.play();
+                 }else {
+                     countDown.setText(String.valueOf(i));
+                     conteo.setLocationSong("/sounds/conter.wav");
+                     conteo.play();
+                     try {
+                     sleep(1000);
+                     } catch (InterruptedException e) {
                      e.printStackTrace();
-                 }
-                for (int i = 3 ; i >= 0; i--) {
-                	
-                	if(i==0) {
-                		countDown.setText("Go");
-                		conteo.setLocationSong("/sounds/start.wav");
-                    	conteo.play();
-                	}else {
-                		countDown.setText(String.valueOf(i));
-                		conteo.setLocationSong("/sounds/conter.wav");
-                		conteo.play();
-                		try {
-                        sleep(1000);
-                		} catch (InterruptedException e) {
-                        e.printStackTrace();
-                		}
-                   }
-                }   
-                
-                if(makeLevel){
-                	   new Level();
-                	   dispose();
-                }else {
-                	 dispose();
+                     }
                 }
-            }
+             }
+
+             if(makeLevel){
+                    new Level();
+                    dispose();
+             }else {
+                  dispose();
+             }
          });
         t1.start();    
         

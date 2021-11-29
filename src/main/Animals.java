@@ -10,7 +10,7 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class Animals extends JButton {
-		private static Sound click = new Sound();
+		private static final Sound click = new Sound();
 		private final ImageIcon icon, iconShade;
 		private final String name;
 

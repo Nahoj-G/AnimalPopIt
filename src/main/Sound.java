@@ -1,39 +1,25 @@
 package main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.sound.sampled.*;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JButton;
-
-
 
 
 public class Sound extends JButton {
    
    private File archivowav;
    private Clip clip;
-   private AudioInputStream audioInputStream;
 
-   /**
+    /**
     * Constructor de clase
     */
       public Sound() {
       
       archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "");
        
-      Sound.this.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {                
-                play();           }
-
-       });
+      Sound.this.addActionListener(e -> play());
    }
    
    /**
@@ -41,7 +27,7 @@ public class Sound extends JButton {
     */
    public void play(){
        try {
-           audioInputStream = AudioSystem.getAudioInputStream(archivowav);            
+           AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(archivowav);
            clip = AudioSystem.getClip();
            clip.open(audioInputStream);            
            clip.start();
