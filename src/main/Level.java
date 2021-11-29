@@ -60,7 +60,7 @@ public class Level extends JFrame {
         setVisible(true);
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
-        music.setLocationSong("/src/sounds/song.wav");
+        music.setLocationSong("/sounds/song.wav");
         music.play();
         music.loop(10);
         
@@ -356,7 +356,7 @@ public class Level extends JFrame {
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
-					wrongSound.setLocationSong("/src/sounds/error.wav");
+					wrongSound.setLocationSong("/sounds/error.wav");
 			        wrongSound.play();
 					tryAgain.setVisible(true);
 					backgroundShade.setVisible(true);

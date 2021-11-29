@@ -52,11 +52,11 @@ public class CountForm extends JFrame{
                 	
                 	if(i==0) {
                 		countDown.setText("Go");
-                		conteo.setLocationSong("/src/sounds/start.wav");
+                		conteo.setLocationSong("/sounds/start.wav");
                     	conteo.play();
                 	}else {
                 		countDown.setText(String.valueOf(i));
-                		conteo.setLocationSong("/src/sounds/conter.wav");
+                		conteo.setLocationSong("/sounds/conter.wav");
                 		conteo.play();
                 		try {
                         sleep(1000);

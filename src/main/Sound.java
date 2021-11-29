@@ -54,7 +54,8 @@ public class Sound extends JButton {
    }
    
    public void setLocationSong(String a) {
-	  archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + a);
+       String file = String.valueOf(this.getClass().getResource(a));
+	   archivowav = new File(file.replace("%20"," ").replace("file:",""));
    }
    public void stop() {
 	   clip.stop();

@@ -37,7 +37,7 @@ public class Animals extends JButton {
 	    		}
 	    		@Override
 	    		public void mousePressed(MouseEvent e) {  
-	    			click.setLocationSong("/src/sounds/" + name + ".wav");
+	    			click.setLocationSong("/sounds/" + name + ".wav");
 					click.play();
 	    		}
 	    		@Override

@@ -55,7 +55,7 @@ public class MainMenu {
                
        labelBackground.add(startButton);
        labelBackground.add(exitButton);       
-       music.setLocationSong("/src/sounds/back.wav");
+       music.setLocationSong("/sounds/back.wav");
        music.play();
        music.loop(4);
        frame.repaint();
