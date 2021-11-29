@@ -14,7 +14,7 @@ public class EntryUser extends JFrame{
     private LBotton initBotton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
     private JTextField popUser;
-    static public  Player player;
+    static public Player player;
      
     public EntryUser(){
     	
@@ -108,8 +108,5 @@ public class EntryUser extends JFrame{
     private String submitAction() {        
         System.out.println(popUser.getText());
         return popUser.getText();
-   } 
-    
-    
-      
+   }
  }
