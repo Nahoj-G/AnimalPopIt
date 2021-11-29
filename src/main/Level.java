@@ -29,7 +29,6 @@ public class Level extends JFrame {
 	private boolean passLevel;
 	private Hearts h1,h2,h3;
 	private LLabel tryAgain,backgroundShade;
-	
 
 	
     public Level() {
