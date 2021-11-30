@@ -14,7 +14,7 @@ class Animals extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-		private static Sound click = new Sound();
+		private static final Sound click = new Sound();
 		private final ImageIcon icon, iconShade;
 		private final String name;
 

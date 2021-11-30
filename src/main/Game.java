@@ -46,7 +46,7 @@ public class Game extends JFrame {
     	//position = 0;
 		inicio=1;
 		level=1;
-	//	outLevel=level;
+	    //outLevel=level;
 		answerAnimals = new String[inicio];
 		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
 		windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
@@ -70,13 +70,11 @@ public class Game extends JFrame {
 		tryAgain.setFont(new Font("Jokerman", Font.PLAIN,75));
         tryAgain.setBounds(0,0,options.WIDTH,options.HEIGHT);
 		
-		
 		backgroundShade = new JLabel();
 		backgroundShade.setText("");
 		backgroundShade.setFont(new Font("Jokerman", Font.PLAIN, 75));
 		backgroundShade.setBounds(0,0,options.WIDTH,options.HEIGHT);
-		
-		
+
 		System.out.println("animales en juego: "+inicio);
 		System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
      
@@ -98,9 +96,7 @@ public class Game extends JFrame {
 					music.stop();
 					dispose();
 				});
-        		
- 		       		
-        		
+
         //ANIMALES		
         monkeyButton = new Animals("monkey",210,270,241,220);
         monkeyButton.addActionListener(e -> {
@@ -208,8 +204,6 @@ public class Game extends JFrame {
 		backgroundShade.setIcon(dackgroundShade);
 		backgroundShade.setVisible(false);
 
-		
-		
 		h1 = new Hearts("heart",183,81);
 		h2 = new Hearts("heart",220,81);
 		h3 = new Hearts("heart",259,81);
@@ -233,9 +227,6 @@ public class Game extends JFrame {
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
-		
-		
-		
 		repaint();
 		
 		correctAnimals = new String[inicio];
@@ -357,7 +348,6 @@ public class Game extends JFrame {
 						}
 					});
 					t1.start();
-
 
 					position = 0;
 					System.out.println("animales en juego: "+inicio);

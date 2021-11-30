@@ -37,7 +37,7 @@ class EntryUser extends JFrame{
         add(labelBackground);      
         
         
-        //campo donde ignresar el texto
+        //campo donde ingresar el texto
         userTextEntry = new JTextField(5);
         userTextEntry.setBounds(360,625,770,118);
         userTextEntry.setFont(new Font("Consolas", Font.PLAIN,75));
@@ -58,13 +58,13 @@ class EntryUser extends JFrame{
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 					if (submitAction().equals("")){
-		                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
+		                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador",
+                                "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
 		            }else {
 		                //se le cambia el nombre al usuario con el nombre dado en el textfield		                
 		            	player = new Player(submitAction());
 		            	System.out.println("El nombre del jugador es: "+player.getNombre());
-		            	
-		            	
+
 		                //llama al contador del 3.2.1 etc	
 		                new CountForm(true);
 		                dispose();
@@ -89,7 +89,8 @@ class EntryUser extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
             if (submitAction().equals("")){
-                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador", "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No puede jugar sin asignar un nombre de jugador",
+                        "Error: " + "Ingresar nombre", JOptionPane.INFORMATION_MESSAGE);
             }else {
             	 //se le cambia el nombre al usuario con el nombre dado en el textfield            	
             	player = new Player(submitAction());

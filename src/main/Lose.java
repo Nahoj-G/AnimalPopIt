@@ -34,13 +34,10 @@ class Lose extends JFrame{
         musicLose.play();        
         
         labelBackground = new JLabel(animalIcon);
-        labelBackground.setSize(options.WIDTH,1100);       
-        
-        add(labelBackground);   
-        
-        
+        labelBackground.setSize(options.WIDTH,1100);
+        add(labelBackground);
 
-        menuBotton = new LBotton("menu",520,615,126,126);
+		menuBotton = new LBotton("menu",520,615,126,126);
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
@@ -72,8 +69,7 @@ class Lose extends JFrame{
    		userPlayerInfo.setText("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getNivelAlcanzado());
    		userPlayerInfo.setBounds(492,540,1500,48);
    		userPlayerInfo.setFont(new Font("Jokerman", Font.PLAIN, 45));
-   		
-   		
+
 		labelBackground.add(userPlayerInfo);      
         labelBackground.add(menuBotton);
 		labelBackground.add(FinBotton);
