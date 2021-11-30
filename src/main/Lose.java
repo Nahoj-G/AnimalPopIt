@@ -1,22 +1,29 @@
 package main;
 
 import javax.swing.*;
-import java.util.Objects;
 
-public class Lose extends JFrame{
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    public static final int WIDTH = 1520,  HEIGHT = 1100;
-	private static final Sound musicLose = new Sound();
+class Lose extends JFrame{
+
+  
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel labelBackground,userPlayerInfo;
+    private LBotton FinBotton,backToMenu2Botton,menuBotton;
+    private ImageIcon animalIcon,windowIcon;
+    private static Sound musicLose = new Sound();
  
-    public Lose(){
+    protected Lose(){
 
-		ImageIcon animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/perdiste.png")));
-		ImageIcon windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
-		JLabel labelBackground = new JLabel(animalIcon);
-        labelBackground.setSize(WIDTH,HEIGHT);       
+        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));        
+        windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         
-        add(labelBackground);
-        setSize(WIDTH,HEIGHT);
+        setSize(options.WIDTH,1100);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -24,29 +31,52 @@ public class Lose extends JFrame{
         setIconImage(windowIcon.getImage());
         setTitle("Animal Pop It");
         musicLose.setLocationSong("/sounds/gameOver.wav");
-        musicLose.play();
+        musicLose.play();        
+        
+        labelBackground = new JLabel(animalIcon);
+        labelBackground.setSize(options.WIDTH,1100);       
+        
+        add(labelBackground);   
+        
+        
 
-
-		LBotton menuBotton = new LBotton("menu", 520, 615, 126, 126);
-		menuBotton.addActionListener(e -> {
+        menuBotton = new LBotton("menu",520,615,126,126);
+		menuBotton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {			
 			new MainMenu();
-			dispose();
-			});
-
-		LBotton finBotton = new LBotton("Fin", 865, 615, 126, 126);
-		finBotton.addActionListener(e -> System.exit(0));
-
-		LBotton backToMenu2Botton = new LBotton("backToMenu2", 685, 615, 126, 126);
-   		backToMenu2Botton.addActionListener(e -> {
-			   EntryUser.getPlayer().setVidas(3);
-			   new CountForm(true);
-			   dispose();
-		   });
-
-		JLabel userPlayer = new LLabel("LLEGASTE AL NIVEL:  " + EntryUser.getPlayer().getNivelAlcanzado(), 492, 540, 1500, 48, 45);
-		labelBackground.add(userPlayer);      
+			dispose();		
+			}
+		});
+		
+        FinBotton = new LBotton("Fin",865,615,126,126);
+		FinBotton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {			
+			System.exit(0);		
+			}
+		});		
+          
+		backToMenu2Botton = new LBotton("backToMenu2",685,615,126,126);
+   		backToMenu2Botton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			EntryUser.getPlayer().setVidas(3);
+			new CountForm(true);
+			dispose();			
+		}				
+		
+	});
+   		
+   		userPlayerInfo = new JLabel();
+   		userPlayerInfo.setText("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getNivelAlcanzado());
+   		userPlayerInfo.setBounds(492,540,1500,48);
+   		userPlayerInfo.setFont(new Font("Jokerman", Font.PLAIN, 45));
+   		
+   		
+		labelBackground.add(userPlayerInfo);      
         labelBackground.add(menuBotton);
-		labelBackground.add(finBotton);
+		labelBackground.add(FinBotton);
 		labelBackground.add(backToMenu2Botton);
 		add(labelBackground);
 		repaint();

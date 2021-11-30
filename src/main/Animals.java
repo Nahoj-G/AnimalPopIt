@@ -9,12 +9,17 @@ import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
-public class Animals extends JButton {
-		private static final Sound click = new Sound();
+class Animals extends JButton {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private static Sound click = new Sound();
 		private final ImageIcon icon, iconShade;
 		private final String name;
 
-		public Animals(String name,int x, int y, int h, int w ){
+		protected Animals(String name,int x, int y, int h, int w ){
+			
 			this.name = name;
 			icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
 			iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
@@ -37,6 +42,7 @@ public class Animals extends JButton {
 	    		}
 	    		@Override
 	    		public void mousePressed(MouseEvent e) {  
+	    			Animals.stopMusic();
 	    			click.setLocationSong("/sounds/" + name + ".wav");
 					click.play();
 	    		}
@@ -52,9 +58,12 @@ public class Animals extends JButton {
 	    		}
 	         });
 		}
+		
+		
 		public String getName() {
 			return this.name;
 		}
+		
 		public void changeIcon (){
 			setIcon(icon);
 			setContentAreaFilled(false);
@@ -70,6 +79,7 @@ public class Animals extends JButton {
 			setContentAreaFilled(false);
 			setBorder(null);
 		}
+		
 		public static void stopMusic()
 		{
 			click.stop();

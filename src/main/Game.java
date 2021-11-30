@@ -8,9 +8,12 @@ import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
-public class Level extends JFrame {
-
-	private static final int WIDTH = 1514,  HEIGHT = 1080;
+public class Game extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ImageIcon animalIcon,windowIcon,dackgroundShade;
 	private final JLabel numberLevel;
 	private final Animals catButton;
 	private final Animals chickenButton;
@@ -24,41 +27,61 @@ public class Level extends JFrame {
 	private final Animals cowButton;
 	private static final String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String[] correctAnimals,answerAnimals;
-	private int position, inicio,level;
-	private static int outLevel;
+	private int position =0, inicio =1,level =1;
+	//private static int outLevel;
 	private final Sound music = new Sound();
 	private final Sound wrongSound = new Sound();
 	private boolean passLevel;
 	private final Hearts h1;
 	private final Hearts h2;
 	private final Hearts h3;
-	private final LLabel tryAgain;
-	private final LLabel backgroundShade;
+	private final JLabel tryAgain;
+	private final JLabel UserPlayer;
+	private final JLabel backgroundShade;
+	
 
 	
-    public Level() {
+    protected Game() {
 		passLevel = false;
-    	position = 0;
+    	//position = 0;
 		inicio=1;
 		level=1;
-		outLevel=level;
+	//	outLevel=level;
 		answerAnimals = new String[inicio];
-		ImageIcon animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
-		ImageIcon windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
-		ImageIcon dackgroundShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background_shade.png")));
+		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
+		windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
+		dackgroundShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background_shade.png")));
 		JLabel labelBackground = new JLabel(animalIcon);
-        labelBackground.setSize(WIDTH,HEIGHT);
-		JLabel userPlayer = new LLabel(EntryUser.getPlayer().getNombre(), 180, 38, 350, 42, 30);
-		numberLevel = new LLabel("1",60,900,95,95,95);
-		tryAgain = new LLabel("Intenta de nuevo",0,0,WIDTH,HEIGHT,75);
-		backgroundShade = new LLabel("",0,0,WIDTH,HEIGHT,75);
-		labelBackground.add(numberLevel);
-		labelBackground.add(userPlayer);
+        labelBackground.setSize(options.WIDTH,options.HEIGHT);
+        
+        
+        UserPlayer = new JLabel();
+		UserPlayer.setText(EntryUser.getPlayer().getNombre());
+		UserPlayer.setFont(new Font("Jokerman", Font.PLAIN, 30));
+		UserPlayer.setBounds(180, 38, 350, 42);
+		
+		numberLevel = new JLabel();
+		numberLevel.setText("1");
+		numberLevel.setFont(new Font("Jokerman", Font.PLAIN,95));
+		numberLevel.setBounds(60,900,95,95);
+		
+		tryAgain = new JLabel();
+		tryAgain.setText("Intenta de nuevo");
+		tryAgain.setFont(new Font("Jokerman", Font.PLAIN,75));
+        tryAgain.setBounds(0,0,options.WIDTH,options.HEIGHT);
+		
+		
+		backgroundShade = new JLabel();
+		backgroundShade.setText("");
+		backgroundShade.setFont(new Font("Jokerman", Font.PLAIN, 75));
+		backgroundShade.setBounds(0,0,options.WIDTH,options.HEIGHT);
+		
+		
 		System.out.println("animales en juego: "+inicio);
 		System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
      
         add(labelBackground);
-        setSize(WIDTH,HEIGHT);
+        setSize(options.WIDTH,options.HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -76,9 +99,9 @@ public class Level extends JFrame {
 					dispose();
 				});
         		
+ 		       		
         		
-        		
-        		
+        //ANIMALES		
         monkeyButton = new Animals("monkey",210,270,241,220);
         monkeyButton.addActionListener(e -> {
 			answerAnimals [position] =  "monkey"; position++;
@@ -87,8 +110,7 @@ public class Level extends JFrame {
 			if(position==inicio) {
 				checkWin(correctAnimals,answerAnimals);
 			}
-		});
-        		
+		});        		
         	        		
         dogButton = new Animals("dog",570,265,198,242);
 		dogButton.addActionListener(e -> {
@@ -98,79 +120,77 @@ public class Level extends JFrame {
 			if(position==inicio) {
 				checkWin(correctAnimals,answerAnimals);
 				}
+		});        		
+        		
+		cowButton = new Animals("cow",842,264,316,263);
+		cowButton.addActionListener(e -> {
+			answerAnimals [position] =  "cow"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(cowButton.getName());
+			if(position==inicio) {
+				checkWin(correctAnimals,answerAnimals);
+			}
 		});
         		
-        		
-		 cowButton = new Animals("cow",842,264,316,263);
-			cowButton.addActionListener(e -> {
-				answerAnimals [position] =  "cow"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(cowButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
-        		
-			catButton = new Animals("cat",1215,270,145,284);
-			catButton.addActionListener(e -> {
-				answerAnimals [position] =  "cat"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(catButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
-        		
-			wolfButton = new Animals("wolf",40,535,251,307);
-			wolfButton.addActionListener(e -> {
-				answerAnimals [position] =  "wolf"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(wolfButton.getName());
-				if(position==inicio) {
+		catButton = new Animals("cat",1215,270,145,284);
+		catButton.addActionListener(e -> {
+			answerAnimals [position] =  "cat"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(catButton.getName());
+			if(position==inicio) {
 				checkWin(correctAnimals,answerAnimals);
-				}
-			});
-        	
-			sheepButton = new Animals("sheep",361,655,201,266);
-			sheepButton.addActionListener(e -> {
-				answerAnimals [position] =  "sheep"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(sheepButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
+			}
+		});
         		
-        		        		
-			frogButton = new Animals("frog",575,785,214,240);
-			frogButton.addActionListener(e -> {
-				answerAnimals [position] =  "frog"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(frogButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
+		wolfButton = new Animals("wolf",40,535,251,307);
+		wolfButton.addActionListener(e -> {
+			answerAnimals [position] =  "wolf"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(wolfButton.getName());
+			if(position==inicio) {
+			checkWin(correctAnimals,answerAnimals);
+			}
+		});
+        
+		sheepButton = new Animals("sheep",361,655,201,266);
+		sheepButton.addActionListener(e -> {
+			answerAnimals [position] =  "sheep"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(sheepButton.getName());
+			if(position==inicio) {
+				checkWin(correctAnimals,answerAnimals);
+			}
+		});
+             		
+		frogButton = new Animals("frog",575,785,214,240);
+		frogButton.addActionListener(e -> {
+			answerAnimals [position] =  "frog"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(frogButton.getName());
+			if(position==inicio) {
+				checkWin(correctAnimals,answerAnimals);
+			}
+		});
         		
-			chickenButton = new Animals("chicken",675,505,195,254);
-			chickenButton.addActionListener(e -> {
-				answerAnimals [position] =  "chicken"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(chickenButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
+		chickenButton = new Animals("chicken",675,505,195,254);
+		chickenButton.addActionListener(e -> {
+			answerAnimals [position] =  "chicken"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(chickenButton.getName());
+			if(position==inicio) {
+				checkWin(correctAnimals,answerAnimals);
+			}
+		});
         		
-			lyonButton = new Animals("lyon",900,612,281,296);
-			lyonButton.addActionListener(e -> {
-				answerAnimals [position] =  "lyon"; position++;
-				System.out.println("vamos en la posicion :  "+position);
-				System.out.println(lyonButton.getName());
-				if(position==inicio) {
-					checkWin(correctAnimals,answerAnimals);
-					}
-			});
+		lyonButton = new Animals("lyon",900,612,281,296);
+		lyonButton.addActionListener(e -> {
+			answerAnimals [position] =  "lyon"; position++;
+			System.out.println("vamos en la posicion :  "+position);
+			System.out.println(lyonButton.getName());
+			if(position==inicio) {
+				checkWin(correctAnimals,answerAnimals);
+			}
+		});
 
 		pigButton = new Animals("pig",1195,795,291,211);
 		pigButton.addActionListener(e -> {
@@ -179,8 +199,9 @@ public class Level extends JFrame {
 			System.out.println(pigButton.getName());
 			if(position==inicio) {
 				checkWin(correctAnimals,answerAnimals);
-				}
+			}
 		});
+
 		tryAgain.setVisible(false);
 		tryAgain.setForeground(Color.WHITE);
 		tryAgain.setHorizontalAlignment(JTextField.CENTER);
@@ -193,6 +214,8 @@ public class Level extends JFrame {
 		h2 = new Hearts("heart",220,81);
 		h3 = new Hearts("heart",259,81);
 		
+		labelBackground.add(numberLevel);
+		labelBackground.add(UserPlayer);
 		labelBackground.add(tryAgain);
 		labelBackground.add(backgroundShade);
         labelBackground.add(cowButton);
@@ -220,9 +243,7 @@ public class Level extends JFrame {
 	}
     
     //metodo para obtener el nivel actual, y mandarlo  a la clase player(), pero no la he linkeado
-    public int getLevel() {
-    	return outLevel;
-    }   
+      
     
     //metodo del juego
 	private String[] PlaySound(int count) {
@@ -286,11 +307,13 @@ public class Level extends JFrame {
 			if (Arrays.equals(correct,answer)){			
 				if (position ==15){
 					// form ganaste
+					Animals.stopMusic();
 					System.out.println();
 					System.out.println("GANASTE");
 					System.exit(0);					
 				}else {
 					passLevel = true;
+					Animals.stopMusic();
 					System.out.println();
 					System.out.println("Avanzaste de nivel");
 					new CountForm(false);

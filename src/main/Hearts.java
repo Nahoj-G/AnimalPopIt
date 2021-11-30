@@ -3,16 +3,17 @@ package main;
 import javax.swing.*;
 import java.util.Objects;
 
-import static java.lang.Thread.sleep;
-
-public class Hearts extends JButton{
-    private final ImageIcon iconShade;
+class Hearts extends JButton{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final ImageIcon icon, iconShade;
     private final String name;
    
-
-    public Hearts(String name,int x, int y) {
+    protected Hearts(String name,int x, int y) {
         this.name = name;
-        ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
+        icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
         iconShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Shade.png")));
 
         setIcon(icon);
@@ -25,7 +26,7 @@ public class Hearts extends JButton{
     public String getName() {
         return this.name;
     }
-    public void changeIcon (){
+    protected void changeIcon (){
         setIcon(iconShade);
         setContentAreaFilled(false);
         setBorder(null);
