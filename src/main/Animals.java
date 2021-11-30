@@ -1,8 +1,5 @@
 package main;
 import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
@@ -29,12 +26,9 @@ class Animals extends JButton {
 			setContentAreaFilled(false);
 			setBorder(null);
 			setFocusPainted(false);
-			addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	            	 
-	            }
-	        });
+			addActionListener(e -> {
+
+			});
 			addMouseListener (new MouseListener () {
 	    		@Override
 	    		public void mouseClicked(MouseEvent e) {
@@ -58,7 +52,6 @@ class Animals extends JButton {
 	    		}
 	         });
 		}
-		
 		
 		public String getName() {
 			return this.name;

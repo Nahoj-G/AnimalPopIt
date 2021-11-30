@@ -10,10 +10,12 @@ class CountForm extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    private JLabel labelBackground, countDown;
-    private ImageIcon BackgroundImage,windowIcon;
-    private Boolean chooseBackGround;
-    private Sound conteo = new Sound();    
+    private final JLabel labelBackground;
+    private final JLabel countDown;
+    private ImageIcon BackgroundImage;
+    private final ImageIcon windowIcon;
+    private final Boolean chooseBackGround;
+    private final Sound conteo = new Sound();
     //constructor
     protected CountForm(Boolean chooseBackground){    	
     	
