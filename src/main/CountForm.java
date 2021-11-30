@@ -58,7 +58,8 @@ class CountForm extends JFrame{
     		backgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
     	}   
     }
-    
+
+    // metodo que muestra el cambio de nivel y muestra una cuenta regresiva
     private void generateCountDown() {
     	Thread t1 = new Thread(new Runnable() {        	
             public void run(){
