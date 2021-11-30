@@ -2,33 +2,32 @@ package main;
 
 public class Player {
 	
-	private int nivelAlcanzado =0;
-	private String nombre;
-	private  int vidas =3;
+	private int levelReached =0;
+	private String name;
+	private  int lives =3;
 
-	Player(String nombre){
-		nombre = nombre.substring(0,1).toUpperCase() + nombre.substring(1);
-		this.nombre = nombre;		
+	Player(String name){
+		name = name.substring(0,1).toUpperCase() + name.substring(1);
+		this.name = name;		
 	}	
 //Metodos
-	protected String getNombre() {
-		return nombre;
+	protected String getName() {
+		return name;
 	}
 	
-	protected int getVidas() {
-		return vidas;
+	protected int getLives() {
+		return lives;
 	}
 
-	protected void setVidas(int vidas_) {
-		vidas = vidas_;
+	protected void setVidas(int lives_) {
+		lives = lives_;
 	}
 
-	protected int getNivelAlcanzado() {
-		return nivelAlcanzado;
+	protected int getLevelReached() {
+		return levelReached;
 	}
 
-	protected void setNivelAlcanzado(int nivelAlcanzado) {
-		this.nivelAlcanzado = nivelAlcanzado;
-	}
-	
+	protected void setLevelReached(int levelReached) {
+		this.levelReached = levelReached;
+	}	
 }

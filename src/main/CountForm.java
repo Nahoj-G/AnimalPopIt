@@ -12,7 +12,7 @@ class CountForm extends JFrame{
 	private static final long serialVersionUID = 1L;
     private final JLabel labelBackground;
     private final JLabel countDown;
-    private ImageIcon BackgroundImage;
+    private ImageIcon backgroundImage;
     private final ImageIcon windowIcon;
     private final Boolean chooseBackGround;
     private final Sound conteo = new Sound();
@@ -21,7 +21,7 @@ class CountForm extends JFrame{
     	
     	this.chooseBackGround= chooseBackground;
     	windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
-    	BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    	backgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
     	setBackGround(chooseBackGround);
     	
         setSize(options.WIDTH,options.HEIGHT);
@@ -34,7 +34,7 @@ class CountForm extends JFrame{
     	
     	setBackGround(chooseBackGround);
     	  	  
-    	labelBackground = new JLabel(BackgroundImage);
+    	labelBackground = new JLabel(backgroundImage);
         labelBackground.setSize(WIDTH,HEIGHT);
         add(labelBackground);       
                 
@@ -53,9 +53,9 @@ class CountForm extends JFrame{
     //metodos
     private void setBackGround(boolean b) {
     	if(b) {
-    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    		backgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
     	}else {
-    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));    		
+    		backgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
     	}   
     }
     

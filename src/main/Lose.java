@@ -14,7 +14,7 @@ class Lose extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel labelBackground,userPlayerInfo;
-    private LBotton FinBotton,backToMenu2Botton,menuBotton;
+    private LBotton finBotton,backToMenu2Botton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
     private static Sound musicLose = new Sound();
  
@@ -46,8 +46,8 @@ class Lose extends JFrame{
 			}
 		});
 		
-        FinBotton = new LBotton("Fin",865,615,126,126);
-		FinBotton.addActionListener(new ActionListener() {
+        finBotton = new LBotton("Fin",865,615,126,126);
+		finBotton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {			
 			System.exit(0);		
@@ -66,13 +66,13 @@ class Lose extends JFrame{
 	});
    		
    		userPlayerInfo = new JLabel();
-   		userPlayerInfo.setText("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getNivelAlcanzado());
+   		userPlayerInfo.setText("LLEGASTE AL NIVEL:  "+ EntryUser.getPlayer().getLevelReached());
    		userPlayerInfo.setBounds(492,540,1500,48);
    		userPlayerInfo.setFont(new Font("Jokerman", Font.PLAIN, 45));
 
 		labelBackground.add(userPlayerInfo);      
         labelBackground.add(menuBotton);
-		labelBackground.add(FinBotton);
+		labelBackground.add(finBotton);
 		labelBackground.add(backToMenu2Botton);
 		add(labelBackground);
 		repaint();

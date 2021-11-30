@@ -15,7 +15,7 @@ class EntryUser extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JLabel labelBackground;
     private LBotton initBotton,menuBotton;
-    private ImageIcon BackgroundImage,windowIcon;
+    private ImageIcon backgroundImage,windowIcon;
     private JTextField userTextEntry;
     protected static Player player;
       
@@ -30,13 +30,12 @@ class EntryUser extends JFrame{
     	
     	windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
     	setIconImage(windowIcon.getImage());
-    	BackgroundImage = new ImageIcon(this.getClass().getResource("/images/entryUser.png"));  
+    	backgroundImage = new ImageIcon(this.getClass().getResource("/images/entryUser.png"));
     	
-        labelBackground = new JLabel(BackgroundImage);
+        labelBackground = new JLabel(backgroundImage);
         labelBackground.setSize(options.WIDTH, options.HEIGHT);
         add(labelBackground);      
-        
-        
+
         //campo donde ingresar el texto
         userTextEntry = new JTextField(5);
         userTextEntry.setBounds(360,625,770,118);
@@ -44,6 +43,7 @@ class EntryUser extends JFrame{
         userTextEntry.setBackground(new Color(240,236,231));        
         userTextEntry.setBorder(null);      
         userTextEntry.setHorizontalAlignment(JTextField.CENTER);
+
         //aqui configuere el limite y la tecla enter
         userTextEntry.addKeyListener(new KeyListener() {
             @Override
@@ -63,7 +63,7 @@ class EntryUser extends JFrame{
 		            }else {
 		                //se le cambia el nombre al usuario con el nombre dado en el textfield		                
 		            	player = new Player(submitAction());
-		            	System.out.println("El nombre del jugador es: "+player.getNombre());
+		            	System.out.println("El nombre del jugador es: "+player.getName());
 
 		                //llama al contador del 3.2.1 etc	
 		                new CountForm(true);
@@ -94,7 +94,7 @@ class EntryUser extends JFrame{
             }else {
             	 //se le cambia el nombre al usuario con el nombre dado en el textfield            	
             	player = new Player(submitAction());
-            	System.out.println("El nombre del jugador es: "+player.getNombre());
+            	System.out.println("El nombre del jugador es: "+player.getName());
                 //llama al contador del 3.2.1 etc                
                 new CountForm(true);
                 dispose();
@@ -118,7 +118,5 @@ class EntryUser extends JFrame{
     public static Player getPlayer() {
 		return player;
 	}
-   
-     
-	
+
 }

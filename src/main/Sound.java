@@ -18,16 +18,16 @@ class Sound extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private File archivowav;
-   private Clip clip;
-   private AudioInputStream audioInputStream;
+    private File archivoWav;
+    private Clip clip;
+    private AudioInputStream audioInputStream;
 
    /**
     * Constructor de clase
     */
       protected Sound() {
       
-      archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "");
+      archivoWav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "");
        
       Sound.this.addActionListener(new ActionListener() {
            @Override
@@ -42,7 +42,7 @@ private File archivowav;
     */
    public void play(){
        try {
-           audioInputStream = AudioSystem.getAudioInputStream(archivowav);            
+           audioInputStream = AudioSystem.getAudioInputStream(archivoWav);
            clip = AudioSystem.getClip();
            clip.open(audioInputStream);            
            clip.start();
@@ -54,7 +54,7 @@ private File archivowav;
    
    public void setLocationSong(String a) {
        String file = String.valueOf(this.getClass().getResource(a));
-	   archivowav = new File(file.replace("%20"," ").replace("file:",""));
+	   archivoWav = new File(file.replace("%20"," ").replace("file:",""));
    }
    public void stop() {
 	   clip.stop();

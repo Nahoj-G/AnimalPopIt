@@ -12,7 +12,7 @@ class LBotton extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Sound click = new Sound();
+	private final Sound click = new Sound();
     private ImageIcon bottonIcon,bottonHoverIcon;
 
     protected LBotton (String name, int x, int y,int w, int h){
