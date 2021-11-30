@@ -42,7 +42,9 @@ class Animals extends JButton {
 	    		}
 	    		@Override
 	    		public void mousePressed(MouseEvent e) {  
+	    			if(EntryUser.getPlayer().getNivelAlcanzado()!=1) {
 	    			Animals.stopMusic();
+	    			}
 	    			click.setLocationSong("/sounds/" + name + ".wav");
 					click.play();
 	    		}

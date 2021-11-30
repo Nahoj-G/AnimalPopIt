@@ -2,8 +2,10 @@ package main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.FileSystems;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -18,7 +20,7 @@ class Sound extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private File archivowav;
+	private File archivowav;
    private Clip clip;
    private AudioInputStream audioInputStream;
 
@@ -42,22 +44,28 @@ private File archivowav;
     */
    public void play(){
        try {
-           audioInputStream = AudioSystem.getAudioInputStream(archivowav);            
+           //audioInputStream = AudioSystem.getAudioInputStream(archivowav);            
            clip = AudioSystem.getClip();
            clip.open(audioInputStream);            
            clip.start();
 
-       } catch (LineUnavailableException | IOException| UnsupportedAudioFileException e) {
+       } catch (LineUnavailableException | IOException e) {
            System.err.println(e.getMessage());
        }
    }
    
-   public void setLocationSong(String a) {
-       String file = String.valueOf(this.getClass().getResource(a));
-	   archivowav = new File(file.replace("%20"," ").replace("file:",""));
+   public void setLocationSong(String resource) {
+	   InputStream inputStream = this.getClass().getResourceAsStream(resource);
+	   try {
+		   audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(inputStream));
+	   } catch (IOException | UnsupportedAudioFileException e) {
+		   System.err.println("ERROR: Playing sound has failed");
+		   e.printStackTrace();
+	   }
    }
+
    public void stop() {
-	   clip.stop();
+		   clip.stop();
    }
    public void loop(int x) {
 	   clip.loop(x);
