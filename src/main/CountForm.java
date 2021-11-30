@@ -10,18 +10,16 @@ class CountForm extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    private final JLabel labelBackground;
-    private final JLabel countDown;
-    private ImageIcon backgroundImage;
-    private final ImageIcon windowIcon;
-    private final Boolean chooseBackGround;
-    private final Sound conteo = new Sound();
+    private JLabel labelBackground, countDown;
+    private ImageIcon BackgroundImage,windowIcon;
+    private Boolean chooseBackGround;
+    private Sound conteo = new Sound();    
     //constructor
     protected CountForm(Boolean chooseBackground){    	
     	
     	this.chooseBackGround= chooseBackground;
     	windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
-    	backgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    	BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
     	setBackGround(chooseBackGround);
     	
         setSize(options.WIDTH,options.HEIGHT);
@@ -34,7 +32,7 @@ class CountForm extends JFrame{
     	
     	setBackGround(chooseBackGround);
     	  	  
-    	labelBackground = new JLabel(backgroundImage);
+    	labelBackground = new JLabel(BackgroundImage);
         labelBackground.setSize(WIDTH,HEIGHT);
         add(labelBackground);       
                 
@@ -53,13 +51,12 @@ class CountForm extends JFrame{
     //metodos
     private void setBackGround(boolean b) {
     	if(b) {
-    		backgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
+    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
     	}else {
-    		backgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));
+    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));    		
     	}   
     }
-
-    // metodo que muestra el cambio de nivel y muestra una cuenta regresiva
+    
     private void generateCountDown() {
     	Thread t1 = new Thread(new Runnable() {        	
             public void run(){

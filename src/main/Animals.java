@@ -1,5 +1,8 @@
 package main;
 import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
@@ -11,7 +14,7 @@ class Animals extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-		private static final Sound click = new Sound();
+		private static Sound click = new Sound();
 		private final ImageIcon icon, iconShade;
 		private final String name;
 
@@ -26,9 +29,12 @@ class Animals extends JButton {
 			setContentAreaFilled(false);
 			setBorder(null);
 			setFocusPainted(false);
-			addActionListener(e -> {
-
-			});
+			addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	 
+	            }
+	        });
 			addMouseListener (new MouseListener () {
 	    		@Override
 	    		public void mouseClicked(MouseEvent e) {
@@ -52,6 +58,7 @@ class Animals extends JButton {
 	    		}
 	         });
 		}
+		
 		
 		public String getName() {
 			return this.name;

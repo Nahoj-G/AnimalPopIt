@@ -27,7 +27,7 @@ public class Game extends JFrame {
 	private final Animals cowButton;
 	private static final String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String[] correctAnimals,answerAnimals;
-	private int position =0, start =1,level =1;
+	private int position =0, starts =1,level =1;
 	//private static int outLevel;
 	private final Sound music = new Sound();
 	private final Sound wrongSound = new Sound();
@@ -44,10 +44,10 @@ public class Game extends JFrame {
     protected Game() {
 		passLevel = false;
     	//position = 0;
-		start=1;
+		starts=1;
 		level=1;
-	    //outLevel=level;
-		answerAnimals = new String[start];
+	//	outLevel=level;
+		answerAnimals = new String[starts];
 		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
 		windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
 		dackgroundShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background_shade.png")));
@@ -56,7 +56,7 @@ public class Game extends JFrame {
         
         
         UserPlayer = new JLabel();
-		UserPlayer.setText(EntryUser.getPlayer().getName());
+		UserPlayer.setText(EntryUser.getPlayer().getNamePlayer());
 		UserPlayer.setFont(new Font("Jokerman", Font.PLAIN, 30));
 		UserPlayer.setBounds(180, 38, 350, 42);
 		
@@ -70,12 +70,14 @@ public class Game extends JFrame {
 		tryAgain.setFont(new Font("Jokerman", Font.PLAIN,75));
         tryAgain.setBounds(0,0,options.WIDTH,options.HEIGHT);
 		
+		
 		backgroundShade = new JLabel();
 		backgroundShade.setText("");
 		backgroundShade.setFont(new Font("Jokerman", Font.PLAIN, 75));
 		backgroundShade.setBounds(0,0,options.WIDTH,options.HEIGHT);
-
-		System.out.println("animales en juego: "+start);
+		
+		
+		System.out.println("animales en juego: "+starts);
 		System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
      
         add(labelBackground);
@@ -96,14 +98,16 @@ public class Game extends JFrame {
 					music.stop();
 					dispose();
 				});
-
+        		
+ 		       		
+        		
         //ANIMALES		
         monkeyButton = new Animals("monkey",210,270,241,220);
         monkeyButton.addActionListener(e -> {
 			answerAnimals [position] =  "monkey"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(monkeyButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});        		
@@ -113,7 +117,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "dog"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(dogButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 				}
 		});        		
@@ -123,7 +127,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "cow"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(cowButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -133,7 +137,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "cat"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(catButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -143,7 +147,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "wolf"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(wolfButton.getName());
-			if(position==start) {
+			if(position==starts) {
 			checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -153,7 +157,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "sheep"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(sheepButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -163,7 +167,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "frog"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(frogButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -173,7 +177,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "chicken"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(chickenButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -183,7 +187,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "lyon"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(lyonButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -193,7 +197,7 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "pig"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(pigButton.getName());
-			if(position==start) {
+			if(position==starts) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -204,6 +208,8 @@ public class Game extends JFrame {
 		backgroundShade.setIcon(dackgroundShade);
 		backgroundShade.setVisible(false);
 
+		
+		
 		h1 = new Hearts("heart",183,81);
 		h2 = new Hearts("heart",220,81);
 		h3 = new Hearts("heart",259,81);
@@ -227,17 +233,20 @@ public class Game extends JFrame {
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
+		
+		
+		
 		repaint();
 		
-		correctAnimals = new String[start];
-		correctAnimals = playSound(start);
+		correctAnimals = new String[starts];
+		correctAnimals = PlaySound(starts);
 	}
     
     //metodo para obtener el nivel actual, y mandarlo  a la clase player(), pero no la he linkeado
       
     
     //metodo del juego
-	private String[] playSound(int count) {
+	private String[] PlaySound(int count) {
 		correctAnimals = new String[count];
 		for (int i = 0 ; i <count; i++){
 			correctAnimals[i] = listAnimals[(int)(Math.random()*10)];
@@ -288,13 +297,13 @@ public class Game extends JFrame {
 				}
 				System.out.println((i+1)+"-"+correctAnimals[i]);
 			}
-			System.out.println("--------"+start);
+			System.out.println("--------"+starts);
 		});
 		t1.start();
 		return correctAnimals;
 	}
 
-	private void checkWin(String [] correct, String [] answer){
+	public void checkWin(String [] correct, String [] answer){		
 			if (Arrays.equals(correct,answer)){			
 				if (position ==15){
 					// form ganaste
@@ -309,12 +318,12 @@ public class Game extends JFrame {
 					System.out.println("Avanzaste de nivel");
 					new CountForm(false);
 					position = 0;
-					increaseStart();
-					System.out.println("animales en juego: "+start);					
-					correctAnimals = playSound(start);
+					increaseStarts();
+					System.out.println("animales en juego: "+starts);					
+					correctAnimals = PlaySound(starts);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
-					EntryUser.getPlayer().setLevelReached(Integer.parseInt((numberLevel.getText())));
+					EntryUser.getPlayer().setNivelAlcanzado(Integer.parseInt((numberLevel.getText())));
 				}
 			}else{
 				//form perdiste
@@ -328,7 +337,7 @@ public class Game extends JFrame {
 					Animals.stopMusic();
 					
 				}else {
-					EntryUser.getPlayer().setVidas(EntryUser.getPlayer().getLives()-1);
+					EntryUser.getPlayer().setLives(EntryUser.getPlayer().getLives()-1);
 					passLevel = true;
 					System.out.println();
 					System.out.println("Repite el nivel");
@@ -349,8 +358,9 @@ public class Game extends JFrame {
 					});
 					t1.start();
 
+
 					position = 0;
-					System.out.println("animales en juego: "+start);
+					System.out.println("animales en juego: "+starts);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 
@@ -368,9 +378,9 @@ public class Game extends JFrame {
 				}
 			}		
 	}
-	private void increaseStart() {
-		start++;
+	private void increaseStarts() {
+		starts++;
 		level++;
-		answerAnimals = new String[start];		
+		answerAnimals = new String[starts];		
 	}
 }
