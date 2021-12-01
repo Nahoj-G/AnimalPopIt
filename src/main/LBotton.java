@@ -8,13 +8,22 @@ import java.awt.event.MouseListener;
 import java.util.Objects;
 
 class LBotton extends JButton {
+
 	/**
-	 * 
+	 * Clase para crear los botones personalizados
 	 */
 	private static final long serialVersionUID = 1L;
 	private Sound click = new Sound();
     private ImageIcon bottonIcon,bottonHoverIcon;
 
+    /**
+     * Crea el botón personalizado con sus coordenadas y dimensiones
+     * @param name nombre del botón
+     * @param x posición en x en el tablero del botón
+     * @param y posición en y en el tablero del botón
+     * @param w Ancho del botón
+     * @param h Alto del botón
+     */
     protected LBotton (String name, int x, int y,int w, int h){
     	bottonIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Botton.png")));
     	bottonHoverIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "BottonHover.png")));
@@ -32,6 +41,11 @@ class LBotton extends JButton {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
+
+            /**
+             * Reproduce el sonido asignado al botón
+             * @param e
+             */
             @Override
             public void mousePressed(MouseEvent e) {
                     click.setLocationSong("/sounds/" + name + ".wav");

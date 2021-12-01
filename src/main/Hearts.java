@@ -5,12 +5,18 @@ import java.util.Objects;
 
 class Hearts extends JButton{
     /**
-	 * 
+	 * Clase que muestra las vidas que tiene el jugador
 	 */
 	private static final long serialVersionUID = 1L;
 	private final ImageIcon icon, iconShade;
     private final String name;
-   
+
+    /**
+     * Crea el objetivo vidas
+     * @param name nombre del objeto creado (vidas)
+     * @param x posición de x de la imagen en el tablero
+     * @param y posición de y de la imagen en el tablero
+     */
     protected Hearts(String name,int x, int y) {
         this.name = name;
         icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + ".png")));
@@ -23,13 +29,17 @@ class Hearts extends JButton{
         setFocusPainted(false);
     }
 
+
     public String getName() {
         return this.name;
     }
+
+    /**
+     * Cambia el color del corazon de rojo a gris
+     */
     protected void changeIcon (){
         setIcon(iconShade);
         setContentAreaFilled(false);
         setBorder(null);
-    
     }
 }

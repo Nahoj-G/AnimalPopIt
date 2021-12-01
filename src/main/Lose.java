@@ -8,19 +8,21 @@ import java.awt.event.ActionListener;
 
 class Lose extends JFrame{
 
-  
     /**
-	 * 
+	 * Clase que muestra un form cuando pierde el jugador
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel labelBackground,userPlayerInfo;
     private LBotton FinBotton,backToMenu2Botton,menuBotton;
     private ImageIcon animalIcon,windowIcon;
     private static Sound musicLose = new Sound();
- 
+
+	/**
+	 * Crea el formulario donde puede volver a intentar o salir del juego
+	 */
     protected Lose(){
 
-        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));        
+        animalIcon = new ImageIcon(this.getClass().getResource("/images/perdiste.png"));
         windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png")); 
         
         setSize(options.WIDTH,1100);
@@ -39,7 +41,7 @@ class Lose extends JFrame{
         add(labelBackground);   
         
         
-
+		// botón para ir al menú principal
         menuBotton = new LBotton("menu",520,615,126,126);
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
@@ -48,7 +50,8 @@ class Lose extends JFrame{
 			dispose();		
 			}
 		});
-		
+
+		// botón para salir del juego
         FinBotton = new LBotton("Fin",865,615,126,126);
 		FinBotton.addActionListener(new ActionListener() {
 		@Override
@@ -56,7 +59,8 @@ class Lose extends JFrame{
 			System.exit(0);		
 			}
 		});		
-          
+
+		// botón para intentar de nuevo
 		backToMenu2Botton = new LBotton("backToMenu2",685,615,126,126);
    		backToMenu2Botton.addActionListener(new ActionListener() {
 		@Override

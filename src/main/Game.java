@@ -9,8 +9,9 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 public class Game extends JFrame {
+
 	/**
-	 * 
+	 * Clase que contiene el tablero del juego donde se ubicaran los animales
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon animalIcon,windowIcon,dackgroundShade;
@@ -28,7 +29,6 @@ public class Game extends JFrame {
 	private static final String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String[] correctAnimals,answerAnimals;
 	private int position =0, starts =1,level =1;
-	//private static int outLevel;
 	private final Sound music = new Sound();
 	private final Sound wrongSound = new Sound();
 	private boolean passLevel;
@@ -38,15 +38,15 @@ public class Game extends JFrame {
 	private final JLabel tryAgain;
 	private final JLabel UserPlayer;
 	private final JLabel backgroundShade;
-	
 
-	
+	/**
+	 * Metodo constructor crea 10 objetos animals que son con los cuales se jugará
+	 * adicionalmente crea 3 objetos Hears que son las vidas del jugador
+	 */
     protected Game() {
 		passLevel = false;
-    	//position = 0;
 		starts=1;
 		level=1;
-	//	outLevel=level;
 		answerAnimals = new String[starts];
 		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
 		windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
@@ -208,11 +208,23 @@ public class Game extends JFrame {
 		backgroundShade.setIcon(dackgroundShade);
 		backgroundShade.setVisible(false);
 
-		
-		
-		h1 = new Hearts("heart",183,81);
-		h2 = new Hearts("heart",220,81);
-		h3 = new Hearts("heart",259,81);
+
+		/*
+		 En mac y en windows existe una pequeña diferencia en las posiciones que se notan solo en la ubicación de los corazones
+		 motivo por el cual se verifica el sistema operativo y se asignan posiciones según este
+		 */
+		String os = System.getProperty("os.name").toLowerCase();
+
+		if(os.contains("mac")){
+			h1 = new Hearts("heart",188,87);
+			h2 = new Hearts("heart",227,87);
+			h3 = new Hearts("heart",265,87);
+		} else {
+			h1 = new Hearts("heart",183,81);
+			h2 = new Hearts("heart",220,81);
+			h3 = new Hearts("heart",260,81);
+		}
+
 		
 		labelBackground.add(numberLevel);
 		labelBackground.add(UserPlayer);
@@ -233,19 +245,20 @@ public class Game extends JFrame {
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
-		
-		
-		
+
 		repaint();
 		
 		correctAnimals = new String[starts];
 		correctAnimals = PlaySound(starts);
 	}
-    
-    //metodo para obtener el nivel actual, y mandarlo  a la clase player(), pero no la he linkeado
-      
-    
-    //metodo del juego
+
+
+	/**
+	 * Metodo que inicia el nivel asigna los animales los muestra al jugador llamando al método changeIcon
+	 * de la clase Animals y reproduce el sonido del animal
+	 * @param count parametro que indica el nivel
+	 * @return el orden correcto de los animales
+	 */
 	private String[] PlaySound(int count) {
 		correctAnimals = new String[count];
 		for (int i = 0 ; i <count; i++){
@@ -303,6 +316,12 @@ public class Game extends JFrame {
 		return correctAnimals;
 	}
 
+	/**
+	 * Metodo que verifica la respuesta del jugador si esta es correcta llama al metodo playSound para
+	 * pasar al siguiente nivel
+	 * @param correct Array con el orden correcto de animales
+	 * @param answer Array con el orden que establece el jugador
+	 */
 	public void checkWin(String [] correct, String [] answer){		
 			if (Arrays.equals(correct,answer)){			
 				if (position ==15){
@@ -378,6 +397,10 @@ public class Game extends JFrame {
 				}
 			}		
 	}
+
+	/**
+	 * Metodo que incrementa el nivel
+	 */
 	private void increaseStarts() {
 		starts++;
 		level++;

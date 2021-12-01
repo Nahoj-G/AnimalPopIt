@@ -7,14 +7,20 @@ import static java.lang.Thread.sleep;
 class CountForm extends JFrame{
 
     /**
-	 * 
-	 */
+     * Clase que muestra un conteo regresivo al iniciar o cambiar de nivel
+     */
+
 	private static final long serialVersionUID = 1L;
     private JLabel labelBackground, countDown;
     private ImageIcon BackgroundImage,windowIcon;
     private Boolean chooseBackGround;
-    private Sound conteo = new Sound();    
-    //constructor
+    private Sound conteo = new Sound();
+
+    /**
+     * Clase que muestra el conteo regresivo de 3 a 1 para iniciar el nivel, la pantalla
+     * de fondo depende si es el primer nivel o no
+     * @param chooseBackground define el fondo a mostrar según si es primer nivel o no
+     */
     protected CountForm(Boolean chooseBackground){    	
     	
     	this.chooseBackGround= chooseBackground;
@@ -46,9 +52,12 @@ class CountForm extends JFrame{
         generateCountDown();                  
                 
     }
-    
-    
-    //metodos
+
+
+    /**
+     * Metodo que define el fondo dependiente si es primer nivel u otro
+     * @param b si es verdadero define un fondo de lo contraio otro fondo
+     */
     private void setBackGround(boolean b) {
     	if(b) {
     		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
@@ -56,7 +65,11 @@ class CountForm extends JFrame{
     		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));    		
     	}   
     }
-    
+
+
+    /**
+     * Metodo que inicia el conteo regresivo de 3 a 1 para iniciar el nivel
+     */
     private void generateCountDown() {
     	Thread t1 = new Thread(new Runnable() {        	
             public void run(){

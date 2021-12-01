@@ -17,16 +17,16 @@ import javax.swing.JButton;
 class Sound extends JButton {
    
    /**
-	 * 
+	 * Clase de reproducción de sonidos
 	 */
 	private static final long serialVersionUID = 1L;
 	private File archivowav;
    private Clip clip;
    private AudioInputStream audioInputStream;
 
-   /**
-    * Constructor de clase
-    */
+    /**
+     * Crea un sonido
+     */
       protected Sound() {
       
       archivowav = new File(FileSystems.getDefault().getPath("").toAbsolutePath() + "");
@@ -53,7 +53,11 @@ class Sound extends JButton {
            System.err.println(e.getMessage());
        }
    }
-   
+
+    /**
+     * Metodo para asignar el sonido
+     * @param resource localización del sonido
+     */
    public void setLocationSong(String resource) {
 	   InputStream inputStream = this.getClass().getResourceAsStream(resource);
 	   try {
@@ -64,9 +68,17 @@ class Sound extends JButton {
 	   }
    }
 
+    /**
+     * detiene la reproducción
+     */
    public void stop() {
 		   clip.stop();
    }
+
+    /**
+     * Realiza la reproducción en bucle
+     * @param x cantidad de reproducciones para un sonido
+     */
    public void loop(int x) {
 	   clip.loop(x);
    }

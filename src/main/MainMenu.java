@@ -8,15 +8,17 @@ class MainMenu extends JFrame{
 
     
     /**
-	 * 
+	 * Clase del menú principal
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon animalIcon,windowIcon;
     private JLabel labelBackground;  
     private LBotton startButton,exitButton;
-    private Sound music = new Sound();   
+    private Sound music = new Sound();
 
-    
+    /**
+     * Crea el menu principal del juego donde puede inicarlo o salir
+     */
     protected MainMenu() {
     	System.out.println("Animal Pop IT");
     	System.out.println("Inicializando juego");
@@ -34,7 +36,8 @@ class MainMenu extends JFrame{
         setVisible(true);
         setIconImage(windowIcon.getImage()); 
         setTitle("Animal Pop It");
-   
+
+        // botón para iniciar el juego
         startButton = new LBotton("start",622,618,270,100);        
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -46,7 +49,8 @@ class MainMenu extends JFrame{
                dispose();
             }
         });
-        
+
+        // botón para salir del juego
         exitButton = new LBotton("exit",622,736,270,100);   
         exitButton.addActionListener(new ActionListener() {
             @Override
