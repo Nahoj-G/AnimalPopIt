@@ -3,7 +3,7 @@ package main;
 public class AnimalPopIt{
 
 	/**
-	 * Método que inicia el menú principal
+	 * Metodo que inicia el menu principal
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class AnimalPopIt{
 }
 class options {
 
-	/* Clase que nos permite configurar la resolución a la cual se ejecuta el juego
+	/* Clase que nos permite configurar la resolucion a la cual se ejecuta el juego
 
 	 */
 	protected static final int WIDTH = 1514,  HEIGHT = 1080;

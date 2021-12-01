@@ -19,7 +19,7 @@ class CountForm extends JFrame{
     /**
      * Clase que muestra el conteo regresivo de 3 a 1 para iniciar el nivel, la pantalla
      * de fondo depende si es el primer nivel o no
-     * @param chooseBackground define el fondo a mostrar según si es primer nivel o no
+     * @param chooseBackground define el fondo a mostrar segun si es primer nivel o no
      */
     protected CountForm(Boolean chooseBackground){    	
     	

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 class MainMenu extends JFrame{
 
     /**
-	 * Clase del menú principal
+	 * Clase del menu principal
 	 */
 	private static final long serialVersionUID = 1L;
 	private ImageIcon animalIcon,windowIcon;
@@ -36,7 +36,7 @@ class MainMenu extends JFrame{
         setIconImage(windowIcon.getImage()); 
         setTitle("Animal Pop It");
 
-        // botón para iniciar el juego
+        // boton para iniciar el juego
         startButton = new LBotton("start",622,618,270,100);        
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +49,7 @@ class MainMenu extends JFrame{
             }
         });
 
-        // botón para salir del juego
+        // boton para salir del juego
         exitButton = new LBotton("exit",622,736,270,100);   
         exitButton.addActionListener(new ActionListener() {
             @Override

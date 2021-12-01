@@ -17,7 +17,7 @@ import javax.swing.JButton;
 class Sound extends JButton {
    
    /**
-	 * Clase de reproducción de sonidos
+	 * Clase de reproduccion de sonidos
 	 */
 	private static final long serialVersionUID = 1L;
 	private File archivowav;
@@ -55,7 +55,7 @@ class Sound extends JButton {
 
     /**
      * Metodo para asignar el sonido
-     * @param resource localización del sonido
+     * @param resource localizacion del sonido
      */
    public void setLocationSong(String resource) {
 	   InputStream inputStream = this.getClass().getResourceAsStream(resource);
@@ -68,14 +68,14 @@ class Sound extends JButton {
    }
 
     /**
-     * detiene la reproducción
+     * detiene la reproduccion
      */
    public void stop() {
 		   clip.stop();
    }
 
     /**
-     * Realiza la reproducción en bucle
+     * Realiza la reproduccion en bucle
      * @param x cantidad de reproducciones para un sonido
      */
    public void loop(int x) {

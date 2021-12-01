@@ -63,7 +63,7 @@ class EntryUser extends JFrame{
             }
 
             /**
-             * Metodo que impide continuar si no se definió un nombre al jugador
+             * Metodo que impide continuar si no se definio un nombre al jugador
              * @param e
              */
 			@Override
@@ -102,7 +102,7 @@ class EntryUser extends JFrame{
 		initBotton.addActionListener(new ActionListener() {
 
         /**
-         * Metodo que impide continuar si no se definió un nombre al jugador
+         * Metodo que impide continuar si no se definio un nombre al jugador
          * @param e
          */
 		@Override

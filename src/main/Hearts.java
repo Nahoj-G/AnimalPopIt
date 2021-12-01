@@ -14,8 +14,8 @@ class Hearts extends JButton{
     /**
      * Crea el objetivo vidas
      * @param name nombre del objeto creado (vidas)
-     * @param x posición de x de la imagen en el tablero
-     * @param y posición de y de la imagen en el tablero
+     * @param x posicion de x de la imagen en el tablero
+     * @param y posicion de y de la imagen en el tablero
      */
     protected Hearts(String name,int x, int y) {
         this.name = name;

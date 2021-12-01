@@ -39,7 +39,7 @@ public class Game extends JFrame {
 	private final JLabel backgroundShade;
 
 	/**
-	 * Metodo constructor crea 10 objetos animals que son con los cuales se jugará
+	 * Metodo constructor crea 10 objetos animals que son con los cuales se jugara
 	 * adicionalmente crea 3 objetos Hears que son las vidas del jugador
 	 */
     protected Game() {
@@ -209,8 +209,8 @@ public class Game extends JFrame {
 
 
 		/*
-		 En mac y en windows existe una pequeña diferencia en las posiciones que se notan solo en la ubicación de los corazones
-		 motivo por el cual se verifica el sistema operativo y se asignan posiciones según este
+		 En mac y en windows existe una pequena diferencia en las posiciones que se notan solo en la ubicacion de los corazones
+		 motivo por el cual se verifica el sistema operativo y se asignan posiciones segun este
 		 */
 		String os = System.getProperty("os.name").toLowerCase();
 
@@ -253,7 +253,7 @@ public class Game extends JFrame {
 
 
 	/**
-	 * Metodo que inicia el nivel asigna los animales los muestra al jugador llamando al método changeIcon
+	 * Metodo que inicia el nivel asigna los animales los muestra al jugador llamando al metodo changeIcon
 	 * de la clase Animals y reproduce el sonido del animal
 	 * @param count parametro que indica el nivel
 	 * @return el orden correcto de los animales

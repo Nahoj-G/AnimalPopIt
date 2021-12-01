@@ -17,12 +17,12 @@ class LBotton extends JButton {
     private ImageIcon bottonIcon,bottonHoverIcon;
 
     /**
-     * Crea el botón personalizado con sus coordenadas y dimensiones
-     * @param name nombre del botón
-     * @param x posición en x en el tablero del botón
-     * @param y posición en y en el tablero del botón
-     * @param w Ancho del botón
-     * @param h Alto del botón
+     * Crea el boton personalizado con sus coordenadas y dimensiones
+     * @param name nombre del boton
+     * @param x posicion en x en el tablero del boton
+     * @param y posicion en y en el tablero del boton
+     * @param w Ancho del boton
+     * @param h Alto del boton
      */
     protected LBotton (String name, int x, int y,int w, int h){
     	bottonIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/" + name + "Botton.png")));
@@ -43,7 +43,7 @@ class LBotton extends JButton {
             }
 
             /**
-             * Reproduce el sonido asignado al botón.
+             * Reproduce el sonido asignado al boton.
              * @param e
              */
             @Override

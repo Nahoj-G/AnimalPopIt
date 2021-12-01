@@ -9,8 +9,8 @@ import java.util.Objects;
 import static java.lang.Thread.sleep;
 
 /**
- * Clase del objeto animals que se agregará a la clase game cuando se instancie
- * @author Johan Granados, Kevin Camargo. Sebastián Velásquez
+ * Clase del objeto animals que se agregara a la clase game cuando se instancie
+ * @author Johan Granados, Kevin Camargo. Sebastian Velasquez
  */
 class Animals extends JButton {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +19,8 @@ class Animals extends JButton {
 	private final String name;
 
 	/**
-	 * Crea una animal recibiendo como parametros  la posición en x de la imagen,
-	 * la posición en y de la imagen (el animal)
+	 * Crea una animal recibiendo como parametros  la posicion en x de la imagen,
+	 * la posicion en y de la imagen (el animal)
 	 * la altura de la imagen (el animal)
 	 * el ancho de la imagen (el animal)
 	 */
@@ -106,7 +106,7 @@ class Animals extends JButton {
 	}
 
 	/**
-	 * Detiene la reproducción del sonido del animal.
+	 * Detiene la reproduccion del sonido del animal.
 	 */
 	public static void stopMusic()
 	{

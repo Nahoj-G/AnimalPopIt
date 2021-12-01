@@ -41,7 +41,7 @@ class Lose extends JFrame{
         add(labelBackground);   
         
         
-		// botón para ir al menú principal
+		// boton para ir al menu principal
         menuBotton = new LBotton("menu",520,615,126,126);
 		menuBotton.addActionListener(new ActionListener() {
 		@Override
@@ -51,7 +51,7 @@ class Lose extends JFrame{
 			}
 		});
 
-		// botón para salir del juego
+		// boton para salir del juego
         FinBotton = new LBotton("Fin",865,615,126,126);
 		FinBotton.addActionListener(new ActionListener() {
 		@Override
@@ -60,7 +60,7 @@ class Lose extends JFrame{
 			}
 		});		
 
-		// botón para intentar de nuevo
+		// boton para intentar de nuevo
 		backToMenu2Botton = new LBotton("backToMenu2",685,615,126,126);
    		backToMenu2Botton.addActionListener(new ActionListener() {
 		@Override
