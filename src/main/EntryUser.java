@@ -141,7 +141,5 @@ class EntryUser extends JFrame{
     public static Player getPlayer() {
 		return player;
 	}
-   
-     
-	
+
 }

@@ -53,5 +53,4 @@ public class Player {
 	protected void setNivelAlcanzado(int nivelAlcanzado) {
 		this.nivelAlcanzado = nivelAlcanzado;
 	}
-	
 }

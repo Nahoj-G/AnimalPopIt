@@ -106,7 +106,7 @@ class Animals extends JButton {
 	}
 
 	/**
-	 * Detiene la reproducción del sonido del animal
+	 * Detiene la reproducción del sonido del animal.
 	 */
 	public static void stopMusic()
 	{

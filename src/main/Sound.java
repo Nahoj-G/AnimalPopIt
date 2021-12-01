@@ -35,7 +35,6 @@ class Sound extends JButton {
            @Override
            public void actionPerformed(ActionEvent e) {                
                 play();           }
-
        });
    }
    

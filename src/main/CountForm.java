@@ -53,7 +53,6 @@ class CountForm extends JFrame{
                 
     }
 
-
     /**
      * Metodo que define el fondo dependiente si es primer nivel u otro
      * @param b si es verdadero define un fondo de lo contraio otro fondo

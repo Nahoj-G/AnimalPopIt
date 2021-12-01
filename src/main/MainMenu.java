@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 class MainMenu extends JFrame{
 
-    
     /**
 	 * Clase del menú principal
 	 */

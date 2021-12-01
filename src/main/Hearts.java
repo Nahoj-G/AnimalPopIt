@@ -35,7 +35,7 @@ class Hearts extends JButton{
     }
 
     /**
-     * Cambia el color del corazon de rojo a gris
+     * Cambia el color del corazon de rojo a gris.
      */
     protected void changeIcon (){
         setIcon(iconShade);

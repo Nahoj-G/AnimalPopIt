@@ -85,5 +85,4 @@ class Lose extends JFrame{
 		add(labelBackground);
 		repaint();
     }
-    
 }

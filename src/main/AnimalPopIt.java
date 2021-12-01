@@ -2,9 +2,10 @@ package main;
 
 public class AnimalPopIt{
 
-	/* Método que inicia el menú principal
-
-	*/
+	/**
+	 * Método que inicia el menú principal
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new MainMenu();
 	}

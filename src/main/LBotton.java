@@ -43,7 +43,7 @@ class LBotton extends JButton {
             }
 
             /**
-             * Reproduce el sonido asignado al botón
+             * Reproduce el sonido asignado al botón.
              * @param e
              */
             @Override
