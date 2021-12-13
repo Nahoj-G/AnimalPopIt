@@ -13,7 +13,7 @@ class CountForm extends JFrame{
 	private static final long serialVersionUID = 1L;
     private JLabel labelBackground, countDown;
     private ImageIcon BackgroundImage,windowIcon;
-    private Boolean chooseBackGround;
+    private Boolean createGame;
     private Sound conteo = new Sound();
 
     /**
@@ -21,12 +21,13 @@ class CountForm extends JFrame{
      * de fondo depende si es el primer nivel o no
      * @param chooseBackground define el fondo a mostrar segun si es primer nivel o no
      */
-    protected CountForm(Boolean chooseBackground){    	
+    protected CountForm(boolean createGame){    	
+    	this.createGame =createGame;
     	
-    	this.chooseBackGround= chooseBackground;
     	windowIcon = new ImageIcon(this.getClass().getResource("/images/icon.png"));
-    	BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
-    	setBackGround(chooseBackGround);
+    	BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions.png"));
+    	
+    	setBackGround();
     	
         setSize(options.WIDTH,options.HEIGHT);
         setTitle("Animal Pop It");
@@ -34,9 +35,8 @@ class CountForm extends JFrame{
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-        setIconImage(windowIcon.getImage());    	
-    	
-    	setBackGround(chooseBackGround);
+        setIconImage(windowIcon.getImage());     	
+    	//setBackGround();
     	  	  
     	labelBackground = new JLabel(BackgroundImage);
         labelBackground.setSize(WIDTH,HEIGHT);
@@ -57,12 +57,32 @@ class CountForm extends JFrame{
      * Metodo que define el fondo dependiente si es primer nivel u otro
      * @param b si es verdadero define un fondo de lo contraio otro fondo
      */
-    private void setBackGround(boolean b) {
-    	if(b) {
-    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/FirstLevel.png"));
-    	}else {
-    		BackgroundImage = new ImageIcon(this.getClass().getResource("/images/nextLevelLoading.png"));    		
-    	}   
+    private void setBackGround() {    	
+    		int x =(int) (Math.random() * 4);    		
+    		switch (x) {
+			case 1:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions1.png"));
+				break;
+			case 2:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions2.png"));
+				break;
+			case 3:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions3.png"));
+				break;
+			case 4:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions4.png"));
+				break;
+			case 5:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions.png"));
+				break;				
+			default:
+				BackgroundImage = new ImageIcon(this.getClass().getResource("/images/instructions.png"));
+				break;
+			}  		
+    		
+    		
+    	
+    	
     }
 
 
@@ -95,7 +115,7 @@ class CountForm extends JFrame{
                     }
                  }   
                  
-                 if(chooseBackGround){
+                 if(createGame){
                  	   new Game();
                  	   dispose();
                  }else {

@@ -20,6 +20,7 @@ class Sound extends JButton {
 	 * Clase de reproduccion de sonidos
 	 */
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private File archivowav;
    private Clip clip;
    private AudioInputStream audioInputStream;

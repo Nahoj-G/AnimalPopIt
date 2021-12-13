@@ -2,6 +2,8 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -27,7 +29,7 @@ public class Game extends JFrame {
 	private final Animals cowButton;
 	private static final String[] listAnimals = {"dog","cat","cow","chicken","pig","frog","lyon","monkey","sheep","wolf"};
 	private String[] correctAnimals,answerAnimals;
-	private int position =0, starts =1,level =1;
+	private int position =0, start =1,level =1;
 	private final Sound music = new Sound();
 	private final Sound wrongSound = new Sound();
 	private boolean passLevel;
@@ -37,48 +39,52 @@ public class Game extends JFrame {
 	private final JLabel tryAgain;
 	private final JLabel UserPlayer;
 	private final JLabel backgroundShade;
+	protected static boolean soundActivated;
+	protected static boolean soundBlocked;
+	private final LBotton newTryButton;
 
 	/**
 	 * Metodo constructor crea 10 objetos animals que son con los cuales se jugara
 	 * adicionalmente crea 3 objetos Hears que son las vidas del jugador
 	 */
     protected Game() {
+    	soundActivated=false;
 		passLevel = false;
-		starts=1;
+		start=1;
 		level=1;
-		answerAnimals = new String[starts];
+		answerAnimals = new String[start];
 		animalIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background.png")));
 		windowIcon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/icon.png")));
 		dackgroundShade = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/level_background_shade.png")));
 		JLabel labelBackground = new JLabel(animalIcon);
         labelBackground.setSize(options.WIDTH,options.HEIGHT);
-        
-        
+
+
         UserPlayer = new JLabel();
 		UserPlayer.setText(EntryUser.getPlayer().getNamePlayer());
 		UserPlayer.setFont(new Font("Jokerman", Font.PLAIN, 30));
 		UserPlayer.setBounds(180, 38, 350, 42);
-		
+
 		numberLevel = new JLabel();
 		numberLevel.setText("1");
 		numberLevel.setFont(new Font("Jokerman", Font.PLAIN,95));
 		numberLevel.setBounds(60,900,95,95);
-		
+
 		tryAgain = new JLabel();
 		tryAgain.setText("Intenta de nuevo");
 		tryAgain.setFont(new Font("Jokerman", Font.PLAIN,75));
         tryAgain.setBounds(0,0,options.WIDTH,options.HEIGHT);
-		
-		
+
+
 		backgroundShade = new JLabel();
 		backgroundShade.setText("");
 		backgroundShade.setFont(new Font("Jokerman", Font.PLAIN, 75));
 		backgroundShade.setBounds(0,0,options.WIDTH,options.HEIGHT);
-		
-		
-		System.out.println("animales en juego: "+starts);
+
+
+		System.out.println("animales en juego: "+start);
 		System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
-     
+
         add(labelBackground);
         setSize(options.WIDTH,options.HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -97,96 +103,96 @@ public class Game extends JFrame {
 					music.stop();
 					dispose();
 				});
-        		
- 		       		
-        		
-        //ANIMALES		
+
+
+
+        //ANIMALES
         monkeyButton = new Animals("monkey",210,270,241,220);
         monkeyButton.addActionListener(e -> {
 			answerAnimals [position] =  "monkey"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(monkeyButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
-		});        		
-        	        		
+		});
+
         dogButton = new Animals("dog",570,265,198,242);
 		dogButton.addActionListener(e -> {
 			answerAnimals [position] =  "dog"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(dogButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 				}
-		});        		
-        		
+		});
+
 		cowButton = new Animals("cow",842,264,316,263);
 		cowButton.addActionListener(e -> {
 			answerAnimals [position] =  "cow"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(cowButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
-        		
+
 		catButton = new Animals("cat",1215,270,145,284);
 		catButton.addActionListener(e -> {
 			answerAnimals [position] =  "cat"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(catButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
-        		
+
 		wolfButton = new Animals("wolf",40,535,251,307);
 		wolfButton.addActionListener(e -> {
 			answerAnimals [position] =  "wolf"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(wolfButton.getName());
-			if(position==starts) {
+			if(position==start) {
 			checkWin(correctAnimals,answerAnimals);
 			}
 		});
-        
+
 		sheepButton = new Animals("sheep",361,655,201,266);
 		sheepButton.addActionListener(e -> {
 			answerAnimals [position] =  "sheep"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(sheepButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
-             		
+
 		frogButton = new Animals("frog",575,785,214,240);
 		frogButton.addActionListener(e -> {
 			answerAnimals [position] =  "frog"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(frogButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
-        		
+
 		chickenButton = new Animals("chicken",675,505,195,254);
 		chickenButton.addActionListener(e -> {
 			answerAnimals [position] =  "chicken"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(chickenButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
-        		
+
 		lyonButton = new Animals("lyon",900,612,281,296);
 		lyonButton.addActionListener(e -> {
 			answerAnimals [position] =  "lyon"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(lyonButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
@@ -196,10 +202,20 @@ public class Game extends JFrame {
 			answerAnimals [position] =  "pig"; position++;
 			System.out.println("vamos en la posicion :  "+position);
 			System.out.println(pigButton.getName());
-			if(position==starts) {
+			if(position==start) {
 				checkWin(correctAnimals,answerAnimals);
 			}
 		});
+
+		newTryButton = new LBotton("newTry",40,40,93,93);
+		newTryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				newTryButton.setEnabled(false);
+				usedNewTry();
+				playSound(level,true);
+			}
+		}
+		);
 
 		tryAgain.setVisible(false);
 		tryAgain.setForeground(Color.WHITE);
@@ -224,7 +240,7 @@ public class Game extends JFrame {
 			h3 = new Hearts("heart",260,81);
 		}
 
-		
+
 		labelBackground.add(numberLevel);
 		labelBackground.add(UserPlayer);
 		labelBackground.add(tryAgain);
@@ -241,14 +257,15 @@ public class Game extends JFrame {
 		labelBackground.add(wolfButton);
 		labelBackground.add(frogButton);
 		labelBackground.add(numberLevel);
+		labelBackground.add(newTryButton);
 		labelBackground.add(h1);
 		labelBackground.add(h2);
 		labelBackground.add(h3);
 
 		repaint();
-		
-		correctAnimals = new String[starts];
-		correctAnimals = PlaySound(starts);
+		correctAnimals = new String[start];
+		correctAnimals = playSound(start,false);
+		chechNewTry(level);
 	}
 
 
@@ -258,22 +275,31 @@ public class Game extends JFrame {
 	 * @param count parametro que indica el nivel
 	 * @return el orden correcto de los animales
 	 */
-	private String[] PlaySound(int count) {
-		correctAnimals = new String[count];
-		for (int i = 0 ; i <count; i++){
-			correctAnimals[i] = listAnimals[(int)(Math.random()*10)];
+	private String[] playSound(int count,boolean repeat) {
+		soundBlocked=true;
+		disableAnimals(false);
+		if (!repeat) {
+			correctAnimals = new String[count];
+			for (int i = 0; i < count; i++) {
+				correctAnimals[i] = listAnimals[(int) (Math.random() * 10)];
+			}
 		}
-
 		Thread t1 = new Thread(() -> {
+
 			try {
-				if (!passLevel){
+				if (!passLevel) {
 					sleep(1000);
+				}else if (repeat){
+					//pass
 				}else{
 					sleep(4000);
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			soundBlocked=true;
+			disableAnimals(false);
+
 			for (int i = 0 ; i< count ; i++) {
 				switch (correctAnimals[i]) {
 					case "dog":
@@ -309,10 +335,18 @@ public class Game extends JFrame {
 				}
 				System.out.println((i+1)+"-"+correctAnimals[i]);
 			}
-			System.out.println("--------"+starts);
+			System.out.println("--------"+start);
+			disableAnimals(true);
+			soundBlocked=false;
 		});
 		t1.start();
+
+		soundActivated=true;
+		soundBlocked=false;
+		disableAnimals(true);
 		return correctAnimals;
+
+
 	}
 
 	/**
@@ -321,27 +355,38 @@ public class Game extends JFrame {
 	 * @param correct Array con el orden correcto de animales
 	 * @param answer Array con el orden que establece el jugador
 	 */
-	public void checkWin(String [] correct, String [] answer){		
-			if (Arrays.equals(correct,answer)){			
-				if (position ==15){
+	public void checkWin(String [] correct, String [] answer){
+			if (Arrays.equals(correct,answer)){
+				if (position ==50){
 					// form ganaste
 					Animals.stopMusic();
 					System.out.println();
 					System.out.println("GANASTE");
-					System.exit(0);					
+					System.exit(0);
 				}else {
 					passLevel = true;
 					Animals.stopMusic();
 					System.out.println();
 					System.out.println("Avanzaste de nivel");
+					setVisible(false);
 					new CountForm(false);
 					position = 0;
-					increaseStarts();
-					System.out.println("animales en juego: "+starts);					
-					correctAnimals = PlaySound(starts);
+					increaseStart();
+					System.out.println("animales en juego: "+start);
+					correctAnimals = playSound(start,false);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 					EntryUser.getPlayer().setNivelAlcanzado(Integer.parseInt((numberLevel.getText())));
+					Thread t2 = new Thread(() -> {
+					try {
+						sleep(3500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+						setVisible(true);
+					});
+					t2.start();
+
 				}
 			}else{
 				//form perdiste
@@ -353,7 +398,7 @@ public class Game extends JFrame {
 					dispose();
 					new Lose();
 					Animals.stopMusic();
-					
+
 				}else {
 					EntryUser.getPlayer().setLives(EntryUser.getPlayer().getLives()-1);
 					passLevel = true;
@@ -363,7 +408,7 @@ public class Game extends JFrame {
 			        wrongSound.play();
 					tryAgain.setVisible(true);
 					backgroundShade.setVisible(true);
-					
+
 					Thread t1 = new Thread(() -> {
 
 						try {
@@ -378,7 +423,7 @@ public class Game extends JFrame {
 
 
 					position = 0;
-					System.out.println("animales en juego: "+starts);
+					System.out.println("animales en juego: "+start);
 					numberLevel.setText(String.valueOf(level));
 					System.out.println("Nivel de juego actual ---> "+(numberLevel.getText()));
 
@@ -394,15 +439,51 @@ public class Game extends JFrame {
 							break;
 					}
 				}
-			}		
+			}
 	}
 
 	/**
 	 * Metodo que incrementa el nivel
 	 */
-	private void increaseStarts() {
-		starts++;
+	private void increaseStart() {
+		start++;
 		level++;
-		answerAnimals = new String[starts];		
+		answerAnimals = new String[start];
+		chechNewTry(level);
+	}
+
+	private void chechNewTry (int level){
+		if (level%3==0){
+			ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/newTryBotton.png")));
+			newTryButton.setIcon(icon);
+			newTryButton.enableInputMethods(true);
+			newTryButton.setEnabled(true);
+			newTryButton.setContentAreaFilled(false);
+			newTryButton.setBorder(null);
+			newTryButton.setFocusPainted(false);
+		}
+	}
+
+	private void usedNewTry (){
+		ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/images/newTryBottonHover.png")));
+		newTryButton.setIcon(icon);
+		newTryButton.enableInputMethods(false);
+		newTryButton.setEnabled(false);
+		newTryButton.setContentAreaFilled(false);
+		newTryButton.setBorder(null);
+		newTryButton.setFocusPainted(false);
+	}
+
+	private void disableAnimals (boolean isEnabled){
+		cowButton.setEnabled(isEnabled);
+		dogButton.setEnabled(isEnabled);
+		catButton.setEnabled(isEnabled);
+		chickenButton.setEnabled(isEnabled);
+		lyonButton.setEnabled(isEnabled);
+		monkeyButton.setEnabled(isEnabled);
+		pigButton.setEnabled(isEnabled);
+		sheepButton.setEnabled(isEnabled);
+		wolfButton.setEnabled(isEnabled);
+		frogButton.setEnabled(isEnabled);
 	}
 }

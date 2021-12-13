@@ -2,10 +2,12 @@ package main;
 
 public class AnimalPopIt{
 
-	/**
+	/** 
 	 * Metodo que inicia el menu principal
 	 * @param args
 	 */
+	//version 0.95
+	//Date 03/12/21 03:23AM
 	public static void main(String[] args) {
 		new MainMenu();
 	}
@@ -23,3 +25,6 @@ class options {
 	}
 	
 }
+//author 
+//kevinCamargo
+//JohanGranados
